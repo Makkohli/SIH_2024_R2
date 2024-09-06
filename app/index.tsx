@@ -12,7 +12,7 @@ export default function Index() {
       }}
     >
       {/* <Login/> */}
-      <Redirect href={'/profile'}/>
+      <Redirect href={'/Home'}/>
     </View>
   );
 }
