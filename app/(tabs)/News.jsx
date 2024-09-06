@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, ActivityIndicator, Button } from 'react-native';
-import { fetchGlobalHealthNews } from './newsService'; // Import the updated service function
+import { fetchGlobalHealthNews } from '../../components/newsService';
 
 const defaultImage = 'https://via.placeholder.com/100'; // Default image URL
 
@@ -59,7 +59,7 @@ export default function Profile() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Profile</Text>
+      <Text style={styles.heading}>News</Text>
       <Text style={styles.subheading}>Global Health News</Text>
       <FlatList
         data={displayedArticles}
@@ -83,15 +83,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f5',
   },
   heading: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 15,
+    marginBottom: 8,
+    padding:10,
+    marginTop:10
   },
   subheading: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#666',
     marginBottom: 20,
+    marginLeft:12,
   },
   card: {
     flexDirection: 'row',

@@ -182,6 +182,7 @@ export default function Home() {
               padding: 20,
               elevation: 5,
               marginTop: 20,
+              marginBottom:10
             }}>
               <Text style={{
                 fontWeight: 'bold',
