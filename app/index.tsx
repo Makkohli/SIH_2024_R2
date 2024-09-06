@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import Login from '../components/Login';
+import { Redirect } from "expo-router";
 
 export default function Index() {
   return (
@@ -10,7 +11,8 @@ export default function Index() {
         alignItems: "center",        // Horizontally centers the content
       }}
     >
-      <Login/>
+      {/* <Login/> */}
+      <Redirect href={'/profile'}/>
     </View>
   );
 }
