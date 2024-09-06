@@ -12,16 +12,16 @@ export default function _layout() {
     headerShown:false
    }}>
     <Tabs.Screen name='Home' options={{
-      tabBarIcon:({color})=><AntDesign name="Home" size={24} color="black" />
+      tabBarIcon:({color})=><AntDesign name="home" size={24} color="black" />
     }}/>
     <Tabs.Screen name='Contact' options={{
-      tabBarIcon:({color})=><AntDesign1 name="Contacts" size={24} color="black" />
+      tabBarIcon:({color})=><AntDesign1 name="contacts" size={24} color="black" />
     }}/>
     <Tabs.Screen name='News' options={{
-      tabBarIcon:({color})=><FontAwesome name="Newspaper-o" size={24} color="black" />
+      tabBarIcon:({color})=><FontAwesome name="newspaper-o" size={24} color="black" />
     }}/>
     <Tabs.Screen name='Settings' options={{
-      tabBarIcon:({color})=><Feather name="Settings" size={24} color="black" />
+      tabBarIcon:({color})=><Feather name="settings" size={24} color="black" />
     }}/>
    </Tabs>
   )
