@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import Login from "./Screens/Login";
+import Login from '../components/Login';
 
 export default function Index() {
   return (

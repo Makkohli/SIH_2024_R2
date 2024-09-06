@@ -1,5 +1,6 @@
 import { View, Image, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { router } from 'expo-router';
 
 export default function Login() {
   const { width, height } = Dimensions.get('window');
@@ -7,7 +8,7 @@ export default function Login() {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../../assets/images/loginimg.png')}
+        source={require('./../assets/images/loginimg.png')}
         style={[styles.appImage, { width, height: height * 0.7 }]}
         resizeMode="cover"
       />
@@ -15,8 +16,8 @@ export default function Login() {
         <Text style={styles.text}>Your app</Text>
         <Text>Your app3</Text>
         <Text>Your app for healthcare management</Text>
-        <TouchableOpacity style={styles.button} onPress={() => {/* Handle login with Google */}}>
-          <Text style={styles.buttonText}>Login with Google</Text>
+        <TouchableOpacity style={styles.button} onPress={() =>router.push('auth/sign-in')}>
+          <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
       </View>
     </View>
