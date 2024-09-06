@@ -11,6 +11,7 @@ export default function _layout() {
     <Tabs.Screen name='contact'/>
     <Tabs.Screen name='profile'/>
     <Tabs.Screen name='settings'/>
+    <Tabs.Screen name ='faq'/>
    </Tabs>
   )
 }
