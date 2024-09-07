@@ -16,7 +16,7 @@ export default function Contact() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Contact Us</Text>
+      <Text style={styles.heading}>Contact</Text>
 
       <TextInput
         style={styles.input}
