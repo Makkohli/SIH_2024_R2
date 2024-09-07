@@ -94,8 +94,9 @@ export default function Home() {
   <View style={{ flexDirection: 'column', alignItems: 'center', flex: 1 }}>
     <Ionicons name="logo-whatsapp" size={60} color="#25D366" style={{ marginBottom: 10 }} />
     <Text style={{
-      fontWeight: 'bold',
+  
       fontSize: 16,
+      fontFamily:'appfontbold',
       color: '#0052CC',
       textAlign: 'center',
     }}>
@@ -153,7 +154,7 @@ export default function Home() {
                     />
                     <Text style={{
                       marginTop: 10,
-                      fontWeight: 'semibold',
+                      fontFamily:'appfontsemibold',
                       fontSize: 16,
                       color: '#0052CC',
                     }}>
