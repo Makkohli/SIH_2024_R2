@@ -45,9 +45,6 @@ router.get('/', authMiddleware, async (req, res) => {
         }
         const queryObj = {
             userId: dbUser.userId,
-            facilityId: dbUser.facilityId,
-            subDistrictId: dbUser.subDistrictId,
-            districtId: dbUser.districtId,
         }
         const entries = await Entry.find(queryObj);
         return res.status(200).json({ entries: entries });

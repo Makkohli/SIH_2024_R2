@@ -34,17 +34,17 @@ const userSchema = new Schema({
 
     districtId: {
         type: String,
-        required: true,
+        required: false,
     },
 
     subDistrictId: {
         type: String,
-        required: true,
+        required: false,
     },
 
     facilityId: {
         type: String,
-        required: true,
+        required: false,
     },
 
     otp: {
