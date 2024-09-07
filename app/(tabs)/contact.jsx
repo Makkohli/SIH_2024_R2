@@ -16,31 +16,36 @@ export default function Contact() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Contact</Text>
+      <Text style={styles.heading}>Contact Us</Text>
 
+      <Text style={styles.label}>Your Name</Text>
       <TextInput
         style={styles.input}
-        placeholder="Your Name"
+        placeholder="Tony Stark"
         value={name}
         onChangeText={setName}
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
+
+      <Text style={styles.label}>Your Email</Text>
       <TextInput
         style={styles.input}
-        placeholder="Your Email"
+        placeholder="tony.stark@gmail.com"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
+
+      <Text style={styles.label}>Your Message</Text>
       <TextInput
         style={styles.textArea}
-        placeholder="Your Message"
+        placeholder="Write you message here"
         value={message}
         onChangeText={setMessage}
         multiline={true}
         numberOfLines={5}
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
@@ -54,57 +59,66 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    paddingTop: 55,
-    backgroundColor: '#f8f9fa', // Light gray background for a clean look
+    paddingTop: 50,
+    backgroundColor: '#F8F9FA', // Soft light background for modern look
   },
   heading: {
-    fontWeight: 'bold',
     fontSize: 28,
     marginBottom: 20,
-    textAlign: 'center',
-    color: '#333', // Dark gray text for contrast
+    textAlign: 'left',
+    color: '#333', // Darker gray for the heading
+    fontFamily: 'montbold', // Using Montserrat for clean and modern look
+  },
+  label: {
+    fontSize: 16,
+    color: '#585858', // Slightly darker shade for labels
+    marginBottom: 5,
+    marginLeft: 5,
+    fontFamily: 'montmedium', // Consistent Montserrat font
   },
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     padding: 15,
-    marginVertical: 10,
-    borderRadius: 12,
+    marginVertical: 5,
+    borderRadius: 10, // Rounded corners
     borderWidth: 1,
-    borderColor: '#ccc',
-    shadowColor: '#000',
+    borderColor: '#A0A0A0', // Light gray border for modern minimalism
+    shadowColor: '#000', 
     shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2, // Android shadow
+    shadowRadius: 5,
+    elevation: 0,
+    fontFamily: 'montregular', // Modern font for inputs
   },
   textArea: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     padding: 15,
     marginVertical: 10,
-    borderRadius: 12,
+    borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#A0A0A0',
     shadowColor: '#000',
     shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowRadius: 5,
+    elevation: 0,
     height: 120,
     textAlignVertical: 'top',
+    fontFamily: 'montregular',
   },
   button: {
-    backgroundColor: '#6200EE',
+    backgroundColor: '#000000',//#4895EF', // Bright blue for the button, matching the modern theme
     paddingVertical: 15,
     paddingHorizontal: 25,
-    borderRadius: 12,
+    borderRadius: 10, // Fully rounded button
     alignItems: 'center',
     marginTop: 20,
-    shadowColor: '#6200EE',
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5, // Adding shadow for button
+    shadowColor: '#000',
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 18,
+    color: '#ffffff', // White text for contrast
+    fontSize: 20,
+    fontFamily: 'montbold',
   },
 });

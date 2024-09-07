@@ -1,4 +1,3 @@
-// faq.js
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 
@@ -60,7 +59,7 @@ export default function FAQ() {
           <TouchableOpacity
             key={index}
             onPress={() => handlePress(index)}
-            style={styles.accordion}
+            style={styles.card}
           >
             <View style={styles.header}>
               <Text style={styles.question}>{item.question}</Text>
@@ -80,46 +79,43 @@ export default function FAQ() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e0f7fa', // Light blue background color
+    backgroundColor: '#ffffff', // White background
   },
   scrollView: {
     padding: 20,
-    flexGrow: 1,
   },
   heading: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#00796b', // Darker blue-green color
-    marginBottom: 10,
+    fontSize: 28,
+    color: '#0f172a', // Dark text color for the heading
+    marginBottom: 15,
     marginTop: 15,
-    textAlign: 'center',
+    textAlign: 'left',
+    fontFamily: 'montbold', // Font for the heading
   },
-  accordion: {
-    marginBottom: 10,
-    borderRadius: 10,
-    overflow: 'hidden',
-    backgroundColor: '#ffffff',
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 4,
+  card: {
+    backgroundColor: '#ffffff', // White background for each card
+    borderRadius: 10, // Reduced border radius for minimalism
+    padding: 15,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#e2e8f0', // Light gray border for minimalistic look
   },
   header: {
-    padding: 15,
-    backgroundColor: '#004d40', // Deep greenish-blue color
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    paddingBottom: 10,
   },
   question: {
-    fontSize: 18,
-    color: '#ffffff',
-    fontWeight: '600',
+    fontSize: 16,
+    color: '#0f172a', // Dark text color for questions
+    fontFamily: 'montregular', // Font for the question
   },
   body: {
-    padding: 15,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb', // Light gray border for the expanded view
   },
   answer: {
-    fontSize: 16,
-    color: '#333',
+    fontSize: 14,
+    color: '#64748b', // Lighter color for the answer text
+    fontFamily: 'montlight', // Font for the answer
   },
 });
