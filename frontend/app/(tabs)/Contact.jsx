@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f9fa', // Light gray background for a clean look
   },
   heading: {
-    fontWeight: 'bold',
+  
     fontSize: 28,
+    fontFamily:'appfontbold',
     marginBottom: 20,
     textAlign: 'center',
     color: '#333', // Dark gray text for contrast
