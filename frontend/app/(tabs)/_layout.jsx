@@ -5,6 +5,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import AntDesign1 from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Feather from '@expo/vector-icons/Feather';
+import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 
 export default function _layout() {
   return (
@@ -23,6 +24,12 @@ export default function _layout() {
     <Tabs.Screen name='Settings' options={{
       tabBarIcon:({color})=><Feather name="settings" size={24} color="black" />
     }}/>
+    <Tabs.Screen 
+        name='Analytics' 
+        options={{
+          tabBarIcon: ({ color }) => <SimpleLineIcons name="chart" size={24} color={color} />
+        }} 
+      />
    </Tabs>
   )
 }
