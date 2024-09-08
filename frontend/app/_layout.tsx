@@ -37,6 +37,7 @@ export default function RootLayout() {
               <Ionicons name="notifications-outline" size={28} color="black" />
             </TouchableOpacity>
           ),
+          headerShown:false,
         }}
       />
       {/* <Drawer.Screen
@@ -57,6 +58,8 @@ export default function RootLayout() {
           drawerIcon: () => (
             <AntDesign name="linechart" size={24} color="black" />
           ),
+          headerShown:false,
+        
         }}
       />
       <Drawer.Screen
@@ -77,6 +80,7 @@ export default function RootLayout() {
           drawerIcon: () => (
             <Ionicons name="person-outline" size={24} color="black" />
           ),
+
         }}
       />
       <Drawer.Screen
