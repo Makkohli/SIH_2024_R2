@@ -13,6 +13,7 @@ const LoginPage = () => {
   // Handle login form submission
   const handleLogin = async () => {
     try {
+      console.log(userId);
       const response = await axios.post('/signin', { userId, password });
       if (response.status === 200) {
         setOtpRequested(true); // Switch to OTP input if login is successful

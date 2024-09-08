@@ -1,6 +1,7 @@
 import express from "express";
 import userRouter from "./user.js";
 import dataRouter from "./data.js";
+import analyticsRouter from "./analytics.js"
 
 const router = express.Router({ mergeParams: true });
 
@@ -11,5 +12,6 @@ router.get("/", (req, res) => {
 
 router.use("/user", userRouter);
 router.use("/data", dataRouter);
+router.use("/analytics", analyticsRouter);
 
 export default router;

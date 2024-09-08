@@ -2,14 +2,6 @@ import { Text, View } from "react-native";
 import Login from '../components/Login';
 import { Redirect } from "expo-router";
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import Home from './(tabs)/Home';
-import Contact from './(tabs)/Contact';
-
-const Drawer = createDrawerNavigator();
-
 
 export default function Index() {
   const [loaded, error] = useFonts({
@@ -36,9 +28,7 @@ export default function Index() {
       }}
     >
       {/* <Login/> */}
-      <Redirect href={'/Home'}/>
+       <Text>hi</Text>
     </View>
-    
-
   );
 }

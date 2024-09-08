@@ -25,7 +25,7 @@ export default function Home() {
             right: 0,
             zIndex: 0,
           }}>
-            {/* Header with notification icon */}
+            {/* Header with notification icon
             <View style={{
               display: 'flex',
               flexDirection: 'row',
@@ -40,7 +40,7 @@ export default function Home() {
                 Home
               </Text>
               <Ionicons name="notifications-outline" size={28} color="white" />
-            </View>
+            </View> */}
 
             {/* Search bar */}
             <View style={{
