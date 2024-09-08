@@ -36,6 +36,7 @@ export default function OtpScreen() {
   const handleVerify = () => {
     // Add verification logic here
     console.log("OTP Verified");
+    navigation.navigate('Home')
   };
 
   const handleResendOtp = () => {

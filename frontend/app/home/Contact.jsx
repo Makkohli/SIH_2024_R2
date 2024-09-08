@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
-    marginBottom: 20, // Space below the back button
+    marginBottom: 10, // Space below the back button
   },
   heading: {
     fontSize: 28,
-    marginBottom: 20,
+    marginBottom: 10,
     textAlign: 'left',
     color: '#333', // Darker gray for the heading
     fontFamily: 'montbold', // Using Montserrat for clean and modern look

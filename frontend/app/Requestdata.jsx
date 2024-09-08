@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
 export default function RequestData({ route }) {
@@ -21,7 +22,7 @@ export default function RequestData({ route }) {
     if (date && requesteeName && designation && requesteeId && organization && dataRequested) {
       Alert.alert('Request Submitted Successfully');
 
-      // Here we would typically update the Sent requests tab in the Notifications page
+      // Simulating adding the new request to notifications (update the actual logic as per your requirement)
       const newRequest = {
         date,
         heading: 'Data Request',
@@ -32,7 +33,6 @@ export default function RequestData({ route }) {
         state: 'Pending',
       };
 
-      // Navigate back to Notifications page, passing new request data (if you're using navigation and state management)
       route.params.addNewSentRequest(newRequest);
 
       // Reset form
@@ -43,21 +43,24 @@ export default function RequestData({ route }) {
       setOrganization('');
       setDataRequested('');
 
-      navigation.goBack(); // Navigate back to previous screen (Notifications)
+      navigation.goBack();
     } else {
       Alert.alert('Please fill all fields');
     }
   };
 
   return (
-    <View style={styles.container}>
-      {/* Fixed Header */}
-      <View style={styles.header}>
-        <Text style={styles.heading}>Request Data</Text>
-      </View>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        
+        {/* Back Button */}
+        <TouchableOpacity style={styles.backButtonWrapper} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back-outline" color="#333" size={25} />
+        </TouchableOpacity>
 
-      {/* Scrollable form fields */}
-      <ScrollView contentContainerStyle={styles.scrollView}>
+        <Text style={styles.heading}>Request Data</Text>
+
+        {/* Scrollable form fields */}
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Date</Text>
           <TextInput
@@ -123,48 +126,48 @@ export default function RequestData({ route }) {
             placeholderTextColor="#888"
           />
         </View>
-      </ScrollView>
 
-      {/* Fixed Bottom Buttons */}
-      <View style={styles.buttonGroup}>
-        <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
-          <Text style={styles.cancelButtonText}>Cancel</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-          <Text style={styles.submitButtonText}>Submit</Text>
-        </TouchableOpacity>
+        {/* Fixed Bottom Buttons */}
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+            <Text style={styles.cancelButtonText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={styles.submitButtonText}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1, // Allows the page to scroll fully
+    paddingBottom: 100, // Padding to ensure the buttons are scrollable
+  },
   container: {
     flex: 1,
+    padding: 25,
+    paddingTop: 40, // Added space above the back button
     backgroundColor: '#f8f9fa',
   },
-  header: {
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    padding: 20,
-    backgroundColor: '#f8f9fa',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e2e8f0',
-    zIndex: 1, // Ensures the header stays above the form
+  backButtonWrapper: {
+    height: 40,
+    width: 40,
+    backgroundColor: "#E8E8E8", // Gray background for the back button
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10, // Space below the back button
   },
   heading: {
     fontSize: 28,
     fontFamily: 'montbold', // Bold font for heading
     color: '#333',
     textAlign: 'left',
-    marginBottom:5,
-    marginTop:20,
-  },
-  scrollView: {
-    padding: 20,
-    paddingTop: 100, // Ensure form starts below the header
-    paddingBottom: 80, // Give space for buttons at the bottom
+    marginBottom: 20,
   },
   inputGroup: {
     marginBottom: 15,
@@ -184,14 +187,9 @@ const styles = StyleSheet.create({
     fontFamily: 'montlight', // Light font for input text
   },
   buttonGroup: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
-    backgroundColor: '#f8f9fa',
+    paddingVertical: 20,
     borderTopWidth: 1,
     borderTopColor: '#e2e8f0',
   },
