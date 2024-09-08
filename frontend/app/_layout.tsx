@@ -39,7 +39,7 @@ export default function RootLayout() {
           ),
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Notifications"
         options={{
           drawerLabel: 'Notification',
@@ -48,7 +48,7 @@ export default function RootLayout() {
             <Ionicons name="notifications-outline" size={24} color="black" />
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Analytics"
         options={{
@@ -64,6 +64,36 @@ export default function RootLayout() {
         options={{
           drawerLabel: 'Account',
           title: 'Account',
+          drawerIcon: () => (
+            <Ionicons name="person-outline" size={24} color="black" />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="News"
+        options={{
+          drawerLabel: 'News',
+          title: 'News',
+          drawerIcon: () => (
+            <Ionicons name="person-outline" size={24} color="black" />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Contact"
+        options={{
+          drawerLabel: 'Contact',
+          title: 'Contact',
+          drawerIcon: () => (
+            <Ionicons name="person-outline" size={24} color="black" />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Settings"
+        options={{
+          drawerLabel: 'Setings',
+          title: 'Settings',
           drawerIcon: () => (
             <Ionicons name="person-outline" size={24} color="black" />
           ),
