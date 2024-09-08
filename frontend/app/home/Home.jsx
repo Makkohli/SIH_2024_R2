@@ -7,18 +7,6 @@ export default function Home() {
   const [isDropdownVisible, setDropdownVisible] = useState(false); // State for dropdown visibility
   const navigation = useNavigation();
 
-  const dropdownItems = [
-    { id: '1', title: 'Analytics', route: 'Analytics' },
-    { id: '2', title: 'Account', route: 'Account' },
-    { id: '3', title: 'Contact', route: 'Contact' },
-    { id: '4', title: 'Settings', route: 'Settings' },
-  ];
-
-  const handleItemPress = (route) => {
-    setDropdownVisible(false); // Hide dropdown
-    navigation.navigate(route); // Navigate to selected route
-  };
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -26,9 +14,9 @@ export default function Home() {
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ height: '100%' }}>
-          {/* Top section for HealthX logo */}
+          {/* Top section for HealthX logo and right side icons */}
           <View style={{
-            backgroundColor: '#0052CC',
+            backgroundColor: 'black',
             padding: 10,
             paddingTop: 30,
             width: '100%',
@@ -38,34 +26,47 @@ export default function Home() {
             right: 0,
             zIndex: 1,
             flexDirection: 'row',
-            justifyContent: 'center', // Fixed typo here: should be 'center'
+            justifyContent: 'space-between', // Align items in the same row
+            alignItems: 'center', // Center items vertically
           }}>
-            <Text style={{
-              top: 0,
-              left: 5,
-              fontSize: 42,
-              color: 'white',
-              fontFamily: 'montbold',
-            }}>
-              Health
-            </Text>
-            <Text style={{
-              top: 0,
-              left: 5,
-              fontSize: 42,
-              color: 'white',
-              fontFamily: 'montbold',
-            }}>
-              X
-            </Text>
+            {/* HealthX Logo */}
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{
+                fontSize: 42,
+                color: 'white',
+                fontFamily: 'montbold',
+              }}>
+                Health
+              </Text>
+              <Text style={{
+                fontSize: 42,
+                color: 'white',
+                fontFamily: 'montbold',
+              }}>
+                X
+              </Text>
+            </View>
+
+            {/* Right section - Search, Notifications, Profile */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginRight:10}}>
+              <TouchableOpacity onPress={() => {/* Search function */ }}>
+                <Ionicons name="search-outline" size={28} color="white" style={{ marginRight: 15 }} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
+                <Ionicons name="notifications-outline" size={28} color="white" style={{ marginRight: 15 }} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {/* Profile logic here */ }}>
+                <Ionicons name="person-circle-outline" size={28} color="white" />
+              </TouchableOpacity>
+            </View>
           </View>
 
-          {/* Blue background for the menu bar and search */}
+          {/* Black background for the menu bar and search */}
           <View style={{
-            backgroundColor: '#0052CC',
+            backgroundColor: 'black',
             padding: 15,
             paddingTop: 55,
-            height: '35%',
+            height: '15%',
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20,
             width: '100%',
@@ -75,70 +76,10 @@ export default function Home() {
             right: 0,
             zIndex: 0,
           }}>
-            {/* Header with Hamburger menu, Home heading, Search, Notifications, Profile */}
-            <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              {/* Left section - Hamburger and Home Heading */}
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() => setDropdownVisible(!isDropdownVisible)}>
-                  <Ionicons name="menu-outline" size={28} color="white" />
-                </TouchableOpacity>
-                {/* <Text style={{
-                  fontFamily: 'montbold',
-                  fontSize: 22,
-                  color: 'white',
-                  marginLeft: 10,
-                }}>
-                  Home
-                </Text> */}
-              </View>
-
-              {/* Right section - Search, Notifications, Profile */}
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity onPress={() => {/* Search function */ }}>
-                  <Ionicons name="search-outline" size={28} color="white" style={{ marginRight: 15 }} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
-                  <Ionicons name="notifications-outline" size={28} color="white" style={{ marginRight: 15 }} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => {/* Profile logic here */ }}>
-                  <Ionicons name="person-circle-outline" size={28} color="white" />
-                </TouchableOpacity>
-              </View>
-            </View>
-
-            {/* Dropdown Menu */}
-            {isDropdownVisible && (
-              <Modal
-                transparent={true}
-                animationType="fade"
-                visible={isDropdownVisible}
-                onRequestClose={() => setDropdownVisible(false)}
-              >
-                <View style={styles.dropdownContainer}>
-                  <FlatList
-                    data={dropdownItems}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
-                      <TouchableOpacity
-                        style={styles.dropdownItem}
-                        onPress={() => handleItemPress(item.route)}
-                      >
-                        <Text style={styles.dropdownItemText}>{item.title}</Text>
-                      </TouchableOpacity>
-                    )}
-                  />
-                </View>
-              </Modal>
-            )}
-
           </View>
 
-          {/* Content below the blue section */}
-          <View style={{ marginTop: '60%', paddingHorizontal: 20 }}>
+          {/* Content below the black section */}
+          <View style={{ marginTop: '35%', paddingHorizontal: 20 }}>
 
             {/* Banner Image */}
             <View style={{ alignItems: 'center', marginBottom: 10 }}>
@@ -152,28 +93,10 @@ export default function Home() {
               />
             </View>
 
-            {/* New Card */}
-            <View style={{
-              backgroundColor: '#E3FFF2',
-              borderRadius: 15,
-              padding: 10,
-              flexDirection: 'row',
-              alignItems: 'center',
-              elevation: 5,
-              marginBottom: 20,
-            }}>
-              {/* Icon and Text Section */}
-              <View style={{ flexDirection: 'column', alignItems: 'center', flex: 1 }}>
-                <Ionicons name="logo-whatsapp" size={60} color="#25D366" style={{ marginBottom: 10 }} />
-                <Text style={{
-                  fontSize: 16,
-                  fontFamily: 'montbold',
-                  color: '#0052CC',
-                  textAlign: 'center',
-                }}>
-                  Join our WhatsApp
-                </Text>
-              </View>
+            {/* WhatsApp Banner */}
+            <View style={styles.whatsappBanner}>
+              <Ionicons name="logo-whatsapp" size={50} color="#25D366" />
+              <Text style={styles.whatsappText}>Join our WhatsApp</Text>
             </View>
 
             {/* Activities Section with Three Buttons */}
@@ -181,7 +104,7 @@ export default function Home() {
               <Text style={{
                 fontFamily: 'montbold',
                 fontSize: 22,
-                color: '#0052CC',
+                color: 'black', // Adjusted from #0052CC to white for readability
                 marginBottom: 15,
                 marginLeft: 15,
               }}>
@@ -239,7 +162,7 @@ export default function Home() {
               <Text style={{
                 fontFamily: 'montbold',
                 fontSize: 20,
-                color: '#0052CC',
+                color: 'black', // Adjusted from #0052CC to white for readability
                 marginBottom: 10,
               }}>
                 COVID-19 Information
@@ -248,20 +171,20 @@ export default function Home() {
               <Text style={{
                 fontFamily: 'montbold',
                 fontSize: 16,
-                color: '#0052CC',
+                color: 'black', // Adjusted from #0052CC to white for readability
               }}>
                 States: Example State 1, Example State 2
               </Text>
               <Text style={{
                 fontSize: 14,
-                color: '#0052CC',
+                color: 'black', // Adjusted from #0052CC to white for readability
                 marginTop: 10,
               }}>
                 Total Cases: 1,000,000
               </Text>
               <Text style={{
                 fontSize: 14,
-                color: '#0052CC',
+                color: 'black', // Adjusted from #0052CC to white for readability
               }}>
                 Total Deaths: 50,000
               </Text>
@@ -292,10 +215,10 @@ const styles = StyleSheet.create({
   },
   dropdownItemText: {
     fontSize: 16,
-    color: '#0052CC',
+    color: 'black', // Adjusted from #0052CC to black
   },
   activityButton: {
-    backgroundColor: '#0052CC',
+    backgroundColor: 'black', // Adjusted from #0052CC to black
     padding: 15,
     borderRadius: 10,
     marginVertical: 5,
@@ -306,5 +229,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'montbold',
     fontSize: 16,
+  },
+  whatsappBanner: {
+    backgroundColor: '#E3FFF2',
+    borderRadius: 10,
+    padding: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  whatsappText: {
+    fontFamily: 'montbold',
+    fontSize: 18,
+    color: 'black', // Adjusted from #0052CC to black
+    marginLeft: 10,
   },
 });

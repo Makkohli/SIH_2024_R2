@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, ScrollView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Notifications() {
+  const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState('Notices'); // Default active tab
 
   // Dummy data for the tabs
@@ -83,51 +86,69 @@ export default function Notifications() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.heading}>Notifications</Text>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        {/* Back Button */}
+        <TouchableOpacity style={styles.backButtonWrapper} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back-outline" color="#333" size={25} />
+        </TouchableOpacity>
 
-      {/* Tabs */}
-      <View style={styles.tabContainer}>
-        <TouchableOpacity
-          style={[styles.tabButton, activeTab === 'Notices' && styles.activeTab]}
-          onPress={() => setActiveTab('Notices')}
-        >
-          <Text style={[styles.tabText, activeTab === 'Notices' && styles.activeTabText]}>Notices</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tabButton, activeTab === 'Requests' && styles.activeTab]}
-          onPress={() => setActiveTab('Requests')}
-        >
-          <Text style={[styles.tabText, activeTab === 'Requests' && styles.activeTabText]}>Requests</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tabButton, activeTab === 'Sent' && styles.activeTab]}
-          onPress={() => setActiveTab('Sent')}
-        >
-          <Text style={[styles.tabText, activeTab === 'Sent' && styles.activeTabText]}>Sent</Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={styles.heading}>Notifications</Text>
 
-      {/* Content */}
-      <ScrollView style={styles.contentContainer}>
+        {/* Tabs */}
+        <View style={styles.tabContainer}>
+          <TouchableOpacity
+            style={[styles.tabButton, activeTab === 'Notices' && styles.activeTab]}
+            onPress={() => setActiveTab('Notices')}
+          >
+            <Text style={[styles.tabText, activeTab === 'Notices' && styles.activeTabText]}>Notices</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.tabButton, activeTab === 'Requests' && styles.activeTab]}
+            onPress={() => setActiveTab('Requests')}
+          >
+            <Text style={[styles.tabText, activeTab === 'Requests' && styles.activeTabText]}>Requests</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.tabButton, activeTab === 'Sent' && styles.activeTab]}
+            onPress={() => setActiveTab('Sent')}
+          >
+            <Text style={[styles.tabText, activeTab === 'Sent' && styles.activeTabText]}>Sent</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Content */}
         {renderTabContent()}
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1, // Allows the page to scroll fully
+    paddingBottom: 20, // Padding to ensure the buttons are scrollable
+  },
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: '#f8f9fa',
   },
+  backButtonWrapper: {
+    height: 40,
+    width: 40,
+    backgroundColor: "#E8E8E8", // Gray background for the back button
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10, // Space below the back button
+    marginTop: 20,
+  },
   heading: {
     fontSize: 28,
-    fontFamily: 'montbold', // Font for heading
+    fontFamily: 'montbold', // Bold font for heading
     color: '#333',
     marginBottom: 5,
-    marginTop: 20,
   },
   tabContainer: {
     flexDirection: 'row',

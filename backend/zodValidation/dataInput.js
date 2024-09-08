@@ -6,8 +6,8 @@ const dataSchema = z.object({
   lastName: z.string().optional(),
   age: z.number().min(0), 
   sex: z.string().optional(),
-  startDate: z.date(),
-  endDate: z.date().optional(),
+  startDate: z.string(),
+  endDate: z.string().optional(),
   status: z.string().min(1), // active, cured, dead
   description: z.string().optional(),
 });

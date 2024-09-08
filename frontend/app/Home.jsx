@@ -25,7 +25,7 @@ export default function Home() {
       <View style={styles.header}>
         {/* Logo Image */}
         <View style={styles.logoContainer}>
-          <Image source={require('./../../assets/images/welcomelogoblack.png')} style={styles.logo} />
+          
         </View>
 
         {/* Header Icons and Title */}
@@ -74,7 +74,7 @@ export default function Home() {
 
         {/* Banner Section */}
         <View style={styles.bannerContainer}>
-          <Image source={require('./../../assets/images/banner3.png')} style={styles.bannerImage} />
+          
           <Text style={styles.bannerText}>Annual Health Index</Text>
         </View>
 

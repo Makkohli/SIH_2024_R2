@@ -11,7 +11,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       {/* Icon at the top of the drawer */}
       <View style={{ padding: 20, alignItems: 'center' }}>
-        <Ionicons name="logo-react" size={50} color="blue" />
+        <Ionicons name="logo-react" size={50} color="blue" /> 
         <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 10 }}>My App</Text>
       </View>
 
@@ -37,7 +37,7 @@ export default function RootLayout() {
               <Ionicons name="notifications-outline" size={28} color="black" />
             </TouchableOpacity>
           ),
-          headerShown:false,
+          headerShown: false,
         }}
       />
       {/* <Drawer.Screen
@@ -48,6 +48,7 @@ export default function RootLayout() {
           drawerIcon: () => (
             <Ionicons name="notifications-outline" size={24} color="black" />
           ),
+          headerShown: false,
         }}
       /> */}
       <Drawer.Screen
@@ -58,8 +59,7 @@ export default function RootLayout() {
           drawerIcon: () => (
             <AntDesign name="linechart" size={24} color="black" />
           ),
-          headerShown:false,
-        
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -70,6 +70,7 @@ export default function RootLayout() {
           drawerIcon: () => (
             <Ionicons name="person-outline" size={24} color="black" />
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -80,7 +81,7 @@ export default function RootLayout() {
           drawerIcon: () => (
             <Ionicons name="person-outline" size={24} color="black" />
           ),
-
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -91,6 +92,7 @@ export default function RootLayout() {
           drawerIcon: () => (
             <Ionicons name="person-outline" size={24} color="black" />
           ),
+          headerShown: false,
         }}
       />
       <Drawer.Screen
@@ -101,6 +103,40 @@ export default function RootLayout() {
           drawerIcon: () => (
             <Ionicons name="person-outline" size={24} color="black" />
           ),
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Myaccount"
+        options={{
+          drawerLabel: 'My account',
+          title: 'Myaccount',
+          drawerIcon: () => (
+            <Ionicons name="person-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Requestdata"
+        options={{
+          drawerLabel: 'Request data',
+          title: 'Requestdata',
+          drawerIcon: () => (
+            <Ionicons name="person-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="faq"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="person-outline" size={24} color="black" />
+          ),
+          headerShown: false,
         }}
       />
     </Drawer>

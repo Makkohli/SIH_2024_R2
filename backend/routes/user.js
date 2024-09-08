@@ -1,26 +1,56 @@
-import { userSigninSchema } from "../zodValidation/index.js";
+import { userSigninSchema, userSignupSchema } from "../zodValidation/index.js";
 import { User, Facility, District, SubDistrict } from "../models/index.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import express from "express";
 import cors from "cors";
 import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import FormData from 'form-data';
-import Mailgun from 'mailgun.js';
+
+// import FormData from 'form-data';
+// import Mailgun from 'mailgun.js';
 
 
 const router = express.Router({ mergeParams: true });
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
-router.use(cors());
-
-const mailgun = new Mailgun(FormData);
-  const mg = mailgun.client({username: 'api', key: '4956000509877c1ba2c9d9d06953f28c-2b755df8-18efe6c5'});
+router.use(cors({ origin: '*' }));
 
 router.post("/signin", async (req, res) => {
   const userDeatils = req.body;
+  console.log(userDeatils);
   const { success } = userSigninSchema.safeParse(userDeatils);
+  if (!success) {
+      return res.status(411).json({ message: "Incorrect input" });
+  }
   
+  try {
+      const dbUser = await User.findOne({ userId: userDeatils.userId });
+      if (!dbUser) {
+          return res.status(411).json({ message: "No such Account found with this username" });
+      }
+
+      const passwordMatch = await bcrypt.compare(userDeatils.password, dbUser.password);
+      if (!passwordMatch) {
+          return res.status(411).json({ message: "No such Account found with this password" });
+      }
+      const payload = {
+        userId: dbUser.userId,
+      };
+      const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET_KEY);
+      res.status(200).json({ token: token, userDetails: dbUser });
+  } catch (error) {
+      console.error("Error processing request:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+/*
+const mailgun = new Mailgun(FormData);
+const mg = mailgun.client({username: 'api', key: '4956000509877c1ba2c9d9d06953f28c-2b755df8-18efe6c5'});
+router.post("/signinToDo", async (req, res) => {
+  const userDeatils = req.body;
+  console.log(userDeatils);
+  const { success } = userSigninSchema.safeParse(userDeatils);
   if (!success) {
       return res.status(411).json({ message: "Incorrect input" });
   }
@@ -37,7 +67,9 @@ router.post("/signin", async (req, res) => {
       }
       
       if(dbUser.userId === '2021HDIMS7000' || dbUser.userId === '2021HDIMS7001' || dbUser.userId === '2021HDIMS7002' || dbUser.userId === '2021HDIMS7003'){
-        res.status(200).json({ message: "this is a test id, use 000000 as your OTP" });
+        dbUser.otp = '000000';
+        await dbUser.save();
+        return res.status(200).json({ message: "this is a test id, use 000000 as your OTP" });
       }
       const otp = Math.floor(100000 + Math.random() * 900000).toString();
       dbUser.otp = otp;
@@ -72,11 +104,14 @@ router.post("/verify-otp", async (req, res) => {
     }
     
     if(dbUser.userId === '2021HDIMS7000' || dbUser.userId === '2021HDIMS7001' || dbUser.userId === '2021HDIMS7002' || dbUser.userId === '2021HDIMS7003'){
+      if (dbUser.otp !== otp) {
+        return res.status(411).json({ message: "Invalid OTP" });
+      }
       const payload = {
         userId: dbUser.userId,
       };
       const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET_KEY);
-      res.status(200).json({ token: token });
+      return res.status(200).json({ token: token, userDetails: dbUser});
     }
 
     if (dbUser.otp !== otp || Date.now() > dbUser.otpExpiry) {
@@ -92,7 +127,7 @@ router.post("/verify-otp", async (req, res) => {
     dbUser.otpExpiry = null;
     await dbUser.save();
   
-    res.status(200).json({ token: token });
+    res.status(200).json({ token: token, userDetails: dbUser });
   });
 
 router.post('/clear-otp', async (req, res) => {
@@ -127,7 +162,7 @@ router.post('/clear-otp', async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   });
-
+*/
 router.get('/domains', authMiddleware, async (req, res) => {
   try {
     const userId = req.body.userId;
@@ -190,6 +225,10 @@ router.get('/domains', authMiddleware, async (req, res) => {
 router.post("/signup", async (req, res) => {
   const userDeatils = req.body;
   console.log(userDeatils);
+  const { success } = userSignupSchema.safeParse(userDeatils);
+  if (!success) {
+      return res.status(411).json({ message: "Incorrect input" });
+  }
 
   const userId = await User.findOne({ userId: userDeatils.userId });
   const email = await User.findOne({ email: userDeatils.email });
