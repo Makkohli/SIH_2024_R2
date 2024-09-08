@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, ActivityIndicator, Button, TouchableOpacity } from 'react-native';
-import { fetchGlobalHealthNews } from '../../components/newsService';
+import { fetchGlobalHealthNews } from '../components/newsService';
 
 const defaultImage = 'https://via.placeholder.com/100'; // Default image URL
 

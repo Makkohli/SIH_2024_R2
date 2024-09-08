@@ -25,7 +25,7 @@ export default function Home() {
             right: 0,
             zIndex: 1,
             flexDirection: 'row',
-            justifyContent: 'center', // Fixed typo here: should be 'center'
+            justifyContent: 'centre',
           }}>
             <Text style={{
               top: 0,

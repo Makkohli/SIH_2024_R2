@@ -33,14 +33,14 @@ export default function RootLayout() {
             <AntDesign name="home" size={24} color="black" />
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => router.push('/notifications')}>
+            <TouchableOpacity onPress={() => router.push('/Notifications')}>
               <Ionicons name="notifications-outline" size={28} color="black" />
             </TouchableOpacity>
           ),
         }}
       />
       <Drawer.Screen
-        name="notifications"
+        name="Notifications"
         options={{
           drawerLabel: 'Notification',
           title: 'Notifications',
@@ -50,7 +50,7 @@ export default function RootLayout() {
         }}
       />
       <Drawer.Screen
-        name="analytics"
+        name="Analytics"
         options={{
           drawerLabel: 'Analytics',
           title: 'Analytics',
