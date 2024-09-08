@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 const FAQ_DATA = [
   {
@@ -45,6 +47,7 @@ const FAQ_DATA = [
 ];
 
 export default function FAQ() {
+  const navigation = useNavigation();
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const handlePress = (index) => {
@@ -53,7 +56,13 @@ export default function FAQ() {
 
   return (
     <SafeAreaView style={styles.container}>
+
       <ScrollView contentContainerStyle={styles.scrollView}>
+        {/* Back Button */}
+      <TouchableOpacity style={styles.backButtonWrapper} onPress={() => navigation.goBack()}>
+        <Ionicons name="arrow-back-outline" color="#333" size={25} />
+      </TouchableOpacity>
+
         <Text style={styles.heading}>FAQ</Text>
         {FAQ_DATA.map((item, index) => (
           <TouchableOpacity
@@ -90,6 +99,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginTop: 15,
     textAlign: 'left',
+    marginLeft: 10,
     fontFamily: 'montbold', // Font for the heading
   },
   card: {
@@ -117,5 +127,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#64748b', // Lighter color for the answer text
     fontFamily: 'montlight', // Font for the answer
+  },
+  backButtonWrapper: {
+    height: 40,
+    width: 40,
+    backgroundColor: "#E8E8E8", // Gray background for the back button
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    marginLeft: 2,
+    marginBottom: 5,
   },
 });

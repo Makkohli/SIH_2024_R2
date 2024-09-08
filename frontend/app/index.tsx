@@ -27,7 +27,8 @@ export default function Index() {
         alignItems: "center",        // Horizontally centers the content
       }}
     >
-      <Text>hii</Text>
-    </View>
-  );
+      {/* <Login/> */}
+       <Text>hi</Text>
+    </View>
+  );
 }

@@ -17,10 +17,10 @@ export default function WelcomeScreen() {
     <View style={styles.container}>
 
       {/* Logo */}
-      <Image source={require('./../../assets/images/welcomelogo.png')} style={styles.logo} />
+      <Image source={require( '../assets/images/welcomelogo.png' /*'././../assets/images/welcomelogo.png'*/)} style={styles.logo} />
 
       {/* Main Illustration */}
-      <Image source={require('./../../assets/images/welcomeman.png')} style={styles.bannerImage} />
+      <Image source={require( '../assets/images/welcomeman.png' /*'./../../assets/images/welcomeman.png'*/)} style={styles.bannerImage} />
 
       {/* Title */}
       <Text style={styles.title}>Simplify Health Data, Amplify Care.</Text>
@@ -35,7 +35,7 @@ export default function WelcomeScreen() {
         {/* Login Button */}
         <TouchableOpacity
           style={[styles.buttonWrapper, styles.loginButton]}
-          onPress={handleLogin}
+          onPress={() => navigation.navigate('Logininput')}
         >
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>

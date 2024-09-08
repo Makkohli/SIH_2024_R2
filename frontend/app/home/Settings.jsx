@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 0, // Reduced marginTop to 0 to minimize space above back button
+    marginTop: 10, // Reduced marginTop to 0 to minimize space above back button
     marginBottom: 10, // Reduced space below the back button
   },
   heading: {
