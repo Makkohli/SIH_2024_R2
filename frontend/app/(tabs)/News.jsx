@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Image, ActivityIndicator, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, ActivityIndicator, Button, TouchableOpacity } from 'react-native';
 import { fetchGlobalHealthNews } from '../../components/newsService';
 
 const defaultImage = 'https://via.placeholder.com/100'; // Default image URL
@@ -50,7 +50,7 @@ export default function Profile() {
   );
 
   if (loading) {
-    return <ActivityIndicator style={styles.loading} size="large" color="#0000ff" />;
+    return <ActivityIndicator style={styles.loading} size="large" color="#4895EF" />;
   }
 
   if (error) {
@@ -68,7 +68,9 @@ export default function Profile() {
         showsVerticalScrollIndicator={false}
         ListFooterComponent={
           articles.length > visibleCount && (
-            <Button title="Load More" onPress={loadMoreArticles} />
+            <TouchableOpacity style={styles.loadMoreButton} onPress={loadMoreArticles}>
+              <Text style={styles.loadMoreText}>Load More</Text>
+            </TouchableOpacity>
           )
         }
       />
@@ -80,33 +82,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f0f0f5',
+    backgroundColor: '#f8f9fa', // Light background for modern look
   },
   heading: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontFamily: 'montbold', // Bold font for heading
     color: '#333',
-    marginBottom: 8,
-    padding:10,
-    marginTop:10
+    marginBottom: 4,
+    paddingHorizontal: 10,
+    marginTop: 20,
   },
   subheading: {
     fontSize: 18,
+    fontFamily: 'montregular', // Regular font for subheading
     color: '#666',
-    marginBottom: 20,
-    marginLeft:12,
+    marginBottom: 10,
+    marginLeft: 12,
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 10,
-    elevation: 4,
-    marginBottom: 20,
+    backgroundColor: '#ffffff',
+    borderRadius: 10, // Smooth rounded corners
     padding: 15,
+    marginBottom: 20,
     alignItems: 'center',
+    borderWidth: 1, // No shadows, just borders
+    borderColor: '#b9b9b9',//'#e2e8f0', // Light gray border
   },
   image: {
     width: 100,
@@ -114,30 +115,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 15,
   },
-  imagePlaceholder: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-    backgroundColor: '#ddd',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 15,
-  },
-  placeholderText: {
-    color: '#888',
-    fontSize: 14,
-  },
   cardContent: {
     flex: 1,
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '600',
+    fontFamily: 'montregular', // Regular font for titles
     color: '#333',
     marginBottom: 5,
   },
   cardDescription: {
     fontSize: 14,
+    fontFamily: 'montlight', // Light font for descriptions
     color: '#555',
   },
   loading: {
@@ -151,5 +140,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     color: 'red',
     fontSize: 18,
+  },
+  loadMoreButton: {
+    marginTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#000000', // Light blue background for the button
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  loadMoreText: {
+    fontSize: 16,
+    fontFamily: 'montbold', // Bold font for the button text
+    color: '#ffffff', // White text for contrast
   },
 });
