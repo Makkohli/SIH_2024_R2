@@ -27,8 +27,7 @@ export default function Index() {
         alignItems: "center",        // Horizontally centers the content
       }}
     >
-      {/* <Login/> */}
-      <Redirect href={'/Home'}/>
-    </View>
-  );
+      <Text>hii</Text>
+    </View>
+  );
 }
