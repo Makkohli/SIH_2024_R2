@@ -153,14 +153,10 @@ export default function RootLayout() {
         <Drawer.Screen
         name="Welcome"
         options={{
-          drawerLabel: 'Welcome',
-          title: 'Analytics',
-          drawerIcon: () => (
-            <AntDesign name="linechart" size={24} color="black" />
-          ),
           headerShown: false,
           swipeEnabled: false ,
-          drawerItemStyle: { display: 'none' },
+          swipeEdgeWidth: 0, // using this the welcome page won't be listed in the drawer
+          drawerItemStyle: { display: 'none' }, 
         }}/>
       <Drawer.Screen
         name="faq"
