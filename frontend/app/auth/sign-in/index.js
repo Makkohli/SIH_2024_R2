@@ -1,128 +1,224 @@
+import React, { useState } from "react";
 import {
-  View,
+  Alert,
+  StyleSheet,
   Text,
   TextInput,
-  StyleSheet,
   TouchableOpacity,
+  View,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform
 } from "react-native";
-import React from "react";
-import { useRouter } from "expo-router";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import { BackHandler } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 
-export default function SignIn() {
-  const router = useRouter();
+export default function LoginScreen() {
+  const router = useRouter(); // Initialize the router
+  const [secureEntry, setSecureEntry] = useState(true);
+  const [userId, setUserId] = useState('');  // State for userId
+  const [password, setPassword] = useState('');  // State for passwor
+
+  const handleGoBack = () => {
+    router.push('Welcome'); // Go back to the previous page in the navigation stack
+  };
+  
+  useEffect(() => {
+    const backAction = () => {
+      router.push('Welcome'); // Replace current route with Welcome page
+      return true; // Return true to prevent the default back action
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, [router]);
+
+  const handleSignup = () => {
+    router.push('/auth/sign-up'); // Navigate to the sign-up page
+  };
+
+  const handleLogin = async () => {
+    // Create object with userId and password
+    const loginData = {
+      userId: userId,
+      password: password,
+    };
+
+    try {
+      const response = await fetch('https://sih-backend-tgt0.onrender.com/api/v1/user/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Login successful");
+        // Navigate to the next screen after successful login
+        router.push('/home');
+      } else {
+        console.error("Login failed", data);
+        Alert.alert("Login Failed", data.message || "Invalid credentials.");
+      }
+    } catch (error) {
+      console.error("Error during login", error);
+      Alert.alert("Error", "Something went wrong. Please try again.");
+    }
+  };
+
   return (
-    <View
-      style={{
-        padding: 25,
-        marginTop: 20,
-        height: "100%", // Ensure height is in quotes
-      }}
+    <KeyboardAvoidingView 
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
     >
-      <TouchableOpacity onPress={() => router.back()}>
-        <Ionicons name="arrow-back" size={24} color="black" />
-      </TouchableOpacity>
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 30,
-          marginTop: 10,
-        }}
-      >
-        Let's Sign You In
-      </Text>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.container}>
+          {/* Back Button */}
+          <TouchableOpacity style={styles.backButtonWrapper} onPress={handleGoBack}>
+            <Ionicons
+              name={"arrow-back-outline"}
+              color={"#333"}
+              size={25}
+            />
+          </TouchableOpacity>
 
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 20,
-        }}
-      >
-        Welcome Back
-      </Text>
+          {/* Welcome Text */}
+          <View style={styles.textContainer}>
+            <Text style={styles.headingText}>Hey,</Text>
+            <Text style={styles.headingText}>Welcome</Text>
+            <Text style={styles.headingText}>Back</Text>
+          </View>
 
-      <Text
-        style={{
-          fontWeight: "bold",
-          fontSize: 20,
-        }}
-      >
-        You've been missed!
-      </Text>
+          {/* Form */}
+          <View style={styles.formContainer}>
+            {/* UserId Input */}
+            <View style={styles.inputContainer}>
+              <Ionicons name={"person-outline"} size={24} color={"#666"} />
+              <TextInput
+                style={styles.textInput}
+                placeholder="Enter your user ID"
+                placeholderTextColor="#666"
+                value={userId}
+                onChangeText={setUserId}  // Update state on change
+              />
+            </View>
 
-      <View
-        style={{
-          marginTop: 50,
-        }}
-      >
-        <Text>Email</Text>
-        <TextInput style={styles.input} placeholder="Enter your email" />
-      </View>
-      <View
-        style={{
-          marginTop: 20,
-        }}
-      >
-        <Text>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your password"
-          secureTextEntry={true} // To hide the password text
-        />
-      </View>
-      <View
-        style={{
-          marginTop: 20,
-        }}
-      >
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => console.log("Sign-In pressed")}
-        >
-          <Text style={styles.buttonText}>Sign In</Text>
-        </TouchableOpacity>
+            {/* Password Input */}
+            <View style={styles.inputContainer}>
+              <SimpleLineIcons name={"lock"} size={24} color={"#666"} />
+              <TextInput
+                style={styles.textInput}
+                placeholder="Enter your password"
+                placeholderTextColor="#666"
+                secureTextEntry={secureEntry}
+                value={password}
+                onChangeText={setPassword}  // Update state on change
+              />
+              <TouchableOpacity
+                onPress={() => {
+                  setSecureEntry((prev) => !prev);
+                }}
+              >
+                <SimpleLineIcons name={secureEntry ? "eye" : "eye-off"} size={20} color={"#666"} />
+              </TouchableOpacity>
+            </View>
 
-        <TouchableOpacity
-          style={styles.createAccountButton}
-          onPress={() => router.replace("auth/sign-up")}
-        >
-          <Text style={styles.createAccountButtonText}>Create Account</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+            {/* Forgot Password */}
+            <TouchableOpacity>
+              <Text style={styles.forgotPasswordText} onPress={() => router.push('/auth/forgot-password')}>Forgot Password?</Text>
+            </TouchableOpacity>
+
+            {/* Login Button */}
+            <TouchableOpacity style={styles.loginButtonWrapper} onPress={handleLogin}>
+              <Text style={styles.loginText}>Login</Text>
+            </TouchableOpacity>
+
+            {/* Signup Button */}
+            <TouchableOpacity style={styles.signupButtonWrapper} onPress={handleSignup}>
+              <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  input: {
-    padding: 15,
-    borderWidth: 1,
-    borderRadius: 15,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: 20,
+  },
+  backButtonWrapper: {
+    height: 40,
+    width: 40,
+    backgroundColor:"#E8E8E8",
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 10,
   },
-  button: {
-    backgroundColor: "#05C168", // Green button
-    padding: 15,
-    borderRadius: 15,
+  textContainer: {
+    marginVertical: 30,
+  },
+  headingText: {
+    fontSize: 32,
+    color: "#333",
+    fontFamily: 'montbold',
+  },
+  formContainer: {
     marginTop: 20,
-    alignItems: "center", // Center the button text
   },
-  buttonText: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
-  createAccountButton: {
-    padding: 15,
+  inputContainer: {
     borderWidth: 1,
-    borderColor: "#05C168", // Green border
-    borderRadius: 15,
-    marginTop: 20,
+    borderColor: "#ccc",
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    flexDirection: "row",
     alignItems: "center",
+    paddingVertical: 5,
+    marginVertical: 12,
   },
-  createAccountButtonText: {
-    color: "#05C168", // Green text
-    fontWeight: "bold",
+  textInput: {
+    flex: 1,
+    paddingHorizontal: 10,
+    fontFamily: 'montregular',
+  },
+  forgotPasswordText: {
+    textAlign: "right",
+    color: "#0052CC",
+    fontFamily: 'montsemibold',
+    marginVertical: 5,
+  },
+  loginButtonWrapper: {
+    backgroundColor: "#000000",// "#0052CC",
+    borderRadius: 10,
+    paddingVertical: 10,
+    marginTop: 20,
+  },
+  loginText: {
+    color: "#fff",
+    fontSize: 18,
+    fontFamily: 'montbold',
+    textAlign: "center",
+  },
+  signupButtonWrapper: {
+    marginTop: 20,
+    borderRadius: 10,
+    paddingVertical: 10,
+  },
+  signupText: {
+    color: "#0052CC", // Blue text for the Signup button
     fontSize: 16,
+    fontFamily: 'montsemibold',
+    textAlign: "center",
   },
 });
