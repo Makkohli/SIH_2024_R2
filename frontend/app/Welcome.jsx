@@ -1,33 +1,36 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View, BackHandler } from 'react-native';
+import { router } from 'expo-router'; // Import router from expo-router
 
 export default function WelcomeScreen() {
-  const navigation = useNavigation();
 
-  const handleLogin = () => {
-    navigation.navigate("LOGIN");
-  };
+  useEffect(() => {
+    const backAction = () => {
+      // Exit the app when back button is pressed on the WelcomeScreen
+      BackHandler.exitApp();
+      return true; // Return true to prevent the default back action
+    };
 
-  const handleSignup = () => {
-    navigation.navigate("SIGNUP");
-  };
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
 
+    return () => backHandler.remove();
+  }, []);
+  
   return (
     <View style={styles.container}>
 
       {/* Logo */}
-      <Image source={require( '../assets/images/welcomelogo.png' /*'././../assets/images/welcomelogo.png'*/)} style={styles.logo} />
+      <Image source={require('../assets/images/welcomelogo.png')} style={styles.logo} />
 
       {/* Main Illustration */}
-      <Image source={require( '../assets/images/welcomeman.png' /*'./../../assets/images/welcomeman.png'*/)} style={styles.bannerImage} />
+      <Image source={require('../assets/images/welcomeman.png')} style={styles.bannerImage} />
 
       {/* Title */}
       <Text style={styles.title}>Simplify Health Data, Amplify Care.</Text>
 
       {/* Subtitle */}
       <Text style={styles.subTitle}>
-      Securely connect all your health data in one platform. Simplifying healthcare management for smarter, better care.. easy to use
+        Securely connect all your health data in one platform. Simplifying healthcare management for smarter, better care.. easy to use
       </Text>
 
       {/* Button Container */}
@@ -35,7 +38,7 @@ export default function WelcomeScreen() {
         {/* Login Button */}
         <TouchableOpacity
           style={[styles.buttonWrapper, styles.loginButton]}
-          onPress={() => navigation.navigate('Logininput')}
+          onPress={() => router.push('/auth/sign-in')} // Use router.push for navigation
         >
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
@@ -43,7 +46,7 @@ export default function WelcomeScreen() {
         {/* Signup Button */}
         <TouchableOpacity
           style={[styles.buttonWrapper, styles.signupButton]}
-          onPress={handleSignup}
+          onPress={() => router.push('/Signup')} // Use router.push for signup or learn more
         >
           <Text style={styles.signupButtonText}>Learn More</Text>
         </TouchableOpacity>
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logo: {
-    marginTop: 20 ,
+    marginTop: 20,
     height: 50,  // Adjust height as needed
     width: 200,  // Adjust width as needed
     marginBottom: 20,
