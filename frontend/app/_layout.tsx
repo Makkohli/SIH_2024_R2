@@ -1,25 +1,103 @@
-import { Drawer } from 'expo-router/drawer';
+import React from 'react';
+import { Drawer } from 'expo-router/drawer'; // Ensure correct import
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
 import { router } from 'expo-router'; // Import router
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
+// Custom Drawer Content
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       {/* Icon at the top of the drawer */}
-      <View style={{ padding: 20, alignItems: 'center' }}>
-        <Ionicons name="logo-react" size={50} color="blue" /> 
-        <Text style={{ fontSize: 18, fontWeight: 'bold', marginTop: 10 }}>My App</Text>
+      <View style={styles.header}>
+        <Image source={require('./../assets/images/welcomelogo.png')} style={styles.logo} />
       </View>
 
-      {/* Drawer Items (Screens) */}
-      <DrawerItemList {...props} />
+      {/* Custom Drawer Items */}
+      <DrawerItem
+        label="Home"
+        icon={() => <AntDesign name="home" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('home')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Notifications"
+        icon={() => <Ionicons name="notifications-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Notifications')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Analytics"
+        icon={() => <AntDesign name="linechart" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Analytics')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Index"
+        icon={() => <Ionicons name="book-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('index')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="News"
+        icon={() => <Ionicons name="newspaper-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('News')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Contact Us"
+        icon={() => <Ionicons name="chatbubbles-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Contact')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Settings"
+        icon={() => <Ionicons name="settings-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Settings')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="My Account"
+        icon={() => <Ionicons name="person-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Myaccount')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Request Data"
+        icon={() => <Ionicons name="search-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Requestdata')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="FAQ"
+        icon={() => <Ionicons name="bookmarks-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('faq')}
+        labelStyle={styles.drawerLabel}
+      />
     </DrawerContentScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 160,
+    height: 160,
+    resizeMode: 'contain',
+    marginBottom: -60,
+    marginTop: -60,
+  },
+  drawerLabel: {
+    fontFamily: 'montbold', // Ensure 'montbold' is correctly loaded in your project
+    fontSize: 16,
+    marginBottom: -5,
+  },
+});
 
 export default function RootLayout() {
   return (
@@ -65,10 +143,10 @@ export default function RootLayout() {
       <Drawer.Screen
         name="index"
         options={{
-          drawerLabel: 'Account',
-          title: 'Account',
+          drawerLabel: 'Index',
+          title: 'Index',
           drawerIcon: () => (
-            <Ionicons name="person-outline" size={24} color="black" />
+            <Ionicons name="book-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
@@ -79,7 +157,7 @@ export default function RootLayout() {
           drawerLabel: 'News',
           title: 'News',
           drawerIcon: () => (
-            <Ionicons name="person-outline" size={24} color="black" />
+            <Ionicons name="newspaper-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
@@ -88,9 +166,9 @@ export default function RootLayout() {
         name="Contact"
         options={{
           drawerLabel: 'Contact',
-          title: 'Contact',
+          title: 'Contact Us',
           drawerIcon: () => (
-            <Ionicons name="person-outline" size={24} color="black" />
+            <Ionicons name="chatbubbles-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
@@ -98,10 +176,10 @@ export default function RootLayout() {
       <Drawer.Screen
         name="Settings"
         options={{
-          drawerLabel: 'Setings',
+          drawerLabel: 'Settings',
           title: 'Settings',
           drawerIcon: () => (
-            <Ionicons name="person-outline" size={24} color="black" />
+            <Ionicons name="settings-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
@@ -123,7 +201,7 @@ export default function RootLayout() {
           drawerLabel: 'Request data',
           title: 'Requestdata',
           drawerIcon: () => (
-            <Ionicons name="person-outline" size={24} color="black" />
+            <Ionicons name="search-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
@@ -134,7 +212,7 @@ export default function RootLayout() {
           drawerLabel: 'FAQ',
           title: 'FAQ',
           drawerIcon: () => (
-            <Ionicons name="person-outline" size={24} color="black" />
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
