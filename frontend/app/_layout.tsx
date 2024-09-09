@@ -118,7 +118,7 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Notifications"
         options={{
           drawerLabel: 'Notification',
@@ -128,7 +128,7 @@ export default function RootLayout() {
           ),
           headerShown: false,
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Analytics"
         options={{
@@ -207,6 +207,40 @@ export default function RootLayout() {
         }}
       />
       <Drawer.Screen
+        name="auth/sign-in/index"
+        options={{
+          drawerLabel: 'auth',
+          title: 'auth',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}/>
+         <Drawer.Screen
+        name="auth/sign-up/index"
+        options={{
+          drawerLabel: 'auth',
+          title: 'auth',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}/>
+        <Drawer.Screen
+        name="Welcome"
+        options={{
+          drawerLabel: 'Welcome',
+          title: 'Analytics',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          swipeEnabled: false ,
+          drawerItemStyle: { display: 'none' },
+        }}/>
+      <Drawer.Screen
         name="faq"
         options={{
           drawerLabel: 'FAQ',
@@ -217,6 +251,8 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
+      
     </Drawer>
+    
   );
 }

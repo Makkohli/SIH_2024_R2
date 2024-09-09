@@ -2,6 +2,7 @@ import { Text, View } from "react-native";
 import Login from '../components/Login';
 import { Redirect } from "expo-router";
 import { useFonts } from 'expo-font';
+import Welcome from './Welcome';
 
 export default function Index() {
   const [loaded, error] = useFonts({
@@ -28,7 +29,8 @@ export default function Index() {
       }}
     >
       {/* <Login/> */}
-       <Text>hi</Text>
+      <Welcome/>
+       {/* <Text>hi</Text> */}
     </View>
   );
 }

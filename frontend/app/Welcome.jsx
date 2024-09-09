@@ -1,6 +1,14 @@
+
+
+
+
+
+
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View, BackHandler } from 'react-native';
 import { router } from 'expo-router'; // Import router from expo-router
+
+
 
 export default function WelcomeScreen() {
 
