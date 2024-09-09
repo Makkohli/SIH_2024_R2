@@ -35,6 +35,12 @@ function CustomDrawerContent(props) {
         labelStyle={styles.drawerLabel}
       />
       <DrawerItem
+        label="Submit Data"
+        icon={() => <Ionicons name="book-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Submitdata')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
         label="News"
         icon={() => <Ionicons name="newspaper-outline" size={24} color="black" />}
         onPress={() => props.navigation.navigate('News')}
@@ -132,6 +138,18 @@ export default function RootLayout() {
             <AntDesign name="linechart" size={24} color="black" />
           ),
           headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Submitdata"
+        options={{
+          drawerLabel: 'Analytics',
+          title: 'Analytics',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
         }}
       />
       <Drawer.Screen
@@ -237,6 +255,18 @@ export default function RootLayout() {
         }}
       />
       <Drawer.Screen
+        name="auth/Forgotpassword"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
         name="index"
         options={{
           drawerLabel: 'FAQ',
@@ -248,5 +278,6 @@ export default function RootLayout() {
         }}
       />
     </Drawer>
+    
   );
 }

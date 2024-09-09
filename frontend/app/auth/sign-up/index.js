@@ -195,7 +195,7 @@ const SignupPage = () => {
 
             {/* Login Button */}
             <TouchableOpacity style={styles.loginButtonWrapper} onPress={handleLogin}>
-              <Text style={styles.loginText}>Already have an accout? Login</Text>
+              <Text style={styles.loginText}>Already have an account? Login</Text>
             </TouchableOpacity>
           </View>
         </View>
