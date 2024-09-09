@@ -12,17 +12,30 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import { useRouter } from "expo-router";
+import { BackHandler } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 
 export default function LoginScreen() {
   const router = useRouter(); // Initialize the router
   const [secureEntry, setSecureEntry] = useState(true);
   const [userId, setUserId] = useState('');  // State for userId
-  const [password, setPassword] = useState('');  // State for password
+  const [password, setPassword] = useState('');  // State for passwor
 
   const handleGoBack = () => {
-    router.back(); // Go back to the previous page
+    router.push('Welcome'); // Go back to the previous page in the navigation stack
   };
+  
+  useEffect(() => {
+    const backAction = () => {
+      router.push('Welcome'); // Replace current route with Welcome page
+      return true; // Return true to prevent the default back action
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, [router]);
 
   const handleSignup = () => {
     router.push('/auth/sign-up'); // Navigate to the sign-up page
