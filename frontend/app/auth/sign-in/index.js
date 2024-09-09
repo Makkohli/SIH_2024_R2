@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import {
-  Image,
+  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -9,21 +10,54 @@ import {
   ScrollView,
   Platform
 } from "react-native";
-import React, { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 
 export default function LoginScreen() {
-  const navigation = useNavigation();
+  const router = useRouter(); // Initialize the router
   const [secureEntry, setSecureEntry] = useState(true);
+  const [userId, setUserId] = useState('');  // State for userId
+  const [password, setPassword] = useState('');  // State for password
 
   const handleGoBack = () => {
-    navigation.goBack();
+    router.back(); // Go back to the previous page
   };
 
   const handleSignup = () => {
-    navigation.navigate("SIGNUP");
+    router.push('/auth/sign-up'); // Navigate to the sign-up page
+  };
+
+  const handleLogin = async () => {
+    // Create object with userId and password
+    const loginData = {
+      userId: userId,
+      password: password,
+    };
+
+    try {
+      const response = await fetch('https://sih-backend-tgt0.onrender.com/api/v1/user/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Login successful");
+        // Navigate to the next screen after successful login
+        router.push('/home');
+      } else {
+        console.error("Login failed", data);
+        Alert.alert("Login Failed", data.message || "Invalid credentials.");
+      }
+    } catch (error) {
+      console.error("Error during login", error);
+      Alert.alert("Error", "Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -51,14 +85,15 @@ export default function LoginScreen() {
 
           {/* Form */}
           <View style={styles.formContainer}>
-            {/* Email Input */}
+            {/* UserId Input */}
             <View style={styles.inputContainer}>
-              <Ionicons name={"mail-outline"} size={24} color={"#666"} />
+              <Ionicons name={"person-outline"} size={24} color={"#666"} />
               <TextInput
                 style={styles.textInput}
-                placeholder="Enter your email"
+                placeholder="Enter your user ID"
                 placeholderTextColor="#666"
-                keyboardType="email-address"
+                value={userId}
+                onChangeText={setUserId}  // Update state on change
               />
             </View>
 
@@ -70,6 +105,8 @@ export default function LoginScreen() {
                 placeholder="Enter your password"
                 placeholderTextColor="#666"
                 secureTextEntry={secureEntry}
+                value={password}
+                onChangeText={setPassword}  // Update state on change
               />
               <TouchableOpacity
                 onPress={() => {
@@ -82,13 +119,17 @@ export default function LoginScreen() {
 
             {/* Forgot Password */}
             <TouchableOpacity>
-              <Text style={styles.forgotPasswordText} onPress={() => navigation.navigate('Forgotpassword')}>Forgot Password?</Text>
+              <Text style={styles.forgotPasswordText} onPress={() => router.push('/auth/forgot-password')}>Forgot Password?</Text>
             </TouchableOpacity>
 
             {/* Login Button */}
-            <TouchableOpacity style={styles.loginButtonWrapper}>
-              <Text style={styles.loginText} onPress={() => navigation.navigate('Loginotp')} >Login</Text>
-              
+            <TouchableOpacity style={styles.loginButtonWrapper} onPress={handleLogin}>
+              <Text style={styles.loginText}>Login</Text>
+            </TouchableOpacity>
+
+            {/* Signup Button */}
+            <TouchableOpacity style={styles.signupButtonWrapper} onPress={handleSignup}>
+              <Text style={styles.signupText}>Don't have an account? Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -154,6 +195,17 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontFamily: 'montbold',
+    textAlign: "center",
+  },
+  signupButtonWrapper: {
+    marginTop: 20,
+    borderRadius: 10,
+    paddingVertical: 10,
+  },
+  signupText: {
+    color: "#0052CC", // Blue text for the Signup button
+    fontSize: 16,
+    fontFamily: 'montsemibold',
     textAlign: "center",
   },
 });

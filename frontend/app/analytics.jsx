@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import BrushZoomGraph from '.././components/BrushZoomGraph';
-import VictoryAreaAnimation from '.././components/VictoryAreaAnimation';
-import StackedPolarBars from '.././components/StackedPolarBar';
-import StackedHistogram from '.././components/StackedHistogram';
-import StackedGroupedBars from '.././components/StackedGroupedBar';
-import RadarChart from '.././components/RadarChart';
-import VoronoiTooltipGraph from '.././components/VoronoiTooltipGraph';
-import LineGraph from '.././components/LineGraph';
-import BarGraph from '.././components/BarGraph';
+import BrushZoomGraph from '../components/BrushZoomGraph';
+import VictoryAreaAnimation from '../components/VictoryAreaAnimation';
+import StackedPolarBars from '../components/StackedPolarBar';
+import StackedHistogram from '../components/StackedHistogram';
+import StackedGroupedBars from '../components/StackedGroupedBar';
+import RadarChart from '../components/RadarChart';
+import VoronoiTooltipGraph from '../components/VoronoiTooltipGraph';
+import LineGraph from '../components/LineGraph';
+import BarGraph from '../components/BarGraph';
 
 export default function Analytics() {
   const [expanded, setExpanded] = useState({});

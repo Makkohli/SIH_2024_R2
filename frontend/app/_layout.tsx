@@ -1,8 +1,7 @@
 import { Drawer } from 'expo-router/drawer';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
-import { router } from 'expo-router'; // Import router
+import { useNavigationState } from '@react-navigation/native'; // Import the hook
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { View, Text, TouchableOpacity } from 'react-native';
 
@@ -22,8 +21,16 @@ function CustomDrawerContent(props) {
 }
 
 export default function RootLayout() {
+  const currentRoute = useNavigationState(state => state.index);
+
   return (
-    <Drawer drawerContent={(props) => <CustomDrawerContent {...props} />}>
+    <Drawer
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={({ route }) => ({
+        drawerItemStyle: route.name === 'Welcome' ? { display: 'none' } : undefined,
+        headerShown: route.name !== 'Welcome' // Hide header for the 'Welcome' screen
+      })}
+    >
       <Drawer.Screen
         name="home"
         options={{
@@ -128,6 +135,39 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
+      <Drawer.Screen
+        name="auth/sign-in/index"
+        options={{
+          drawerLabel: 'auth',
+          title: 'auth',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}/>
+      <Drawer.Screen
+        name="auth/sign-up/index"
+        options={{
+          drawerLabel: 'auth',
+          title: 'auth',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}/>
+      <Drawer.Screen
+        name="Welcome"
+        options={{
+          drawerLabel: 'Welcome',
+          title: 'Welcome',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' }, // Hide 'Welcome' screen in drawer
+        }}/>
       <Drawer.Screen
         name="faq"
         options={{
