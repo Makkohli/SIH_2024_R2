@@ -1,10 +1,28 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { router } from "expo-router"; // Import router from expo-router
+
+
+
+
+
+
+import React, { useEffect } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View, BackHandler } from 'react-native';
+import { router } from 'expo-router'; // Import router from expo-router
 
 
 
 export default function WelcomeScreen() {
+
+  useEffect(() => {
+    const backAction = () => {
+      // Exit the app when back button is pressed on the WelcomeScreen
+      BackHandler.exitApp();
+      return true; // Return true to prevent the default back action
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, []);
   
   return (
     <View style={styles.container}>
