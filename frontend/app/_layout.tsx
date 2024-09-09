@@ -35,12 +35,6 @@ function CustomDrawerContent(props) {
         labelStyle={styles.drawerLabel}
       />
       <DrawerItem
-        label="Index"
-        icon={() => <Ionicons name="book-outline" size={24} color="black" />}
-        onPress={() => props.navigation.navigate('index')}
-        labelStyle={styles.drawerLabel}
-      />
-      <DrawerItem
         label="News"
         icon={() => <Ionicons name="newspaper-outline" size={24} color="black" />}
         onPress={() => props.navigation.navigate('News')}
@@ -118,7 +112,7 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-      {/* <Drawer.Screen
+      <Drawer.Screen
         name="Notifications"
         options={{
           drawerLabel: 'Notification',
@@ -128,7 +122,7 @@ export default function RootLayout() {
           ),
           headerShown: false,
         }}
-      /> */}
+      />
       <Drawer.Screen
         name="Analytics"
         options={{
@@ -136,17 +130,6 @@ export default function RootLayout() {
           title: 'Analytics',
           drawerIcon: () => (
             <AntDesign name="linechart" size={24} color="black" />
-          ),
-          headerShown: false,
-        }}
-      />
-      <Drawer.Screen
-        name="index"
-        options={{
-          drawerLabel: 'Index',
-          title: 'Index',
-          drawerIcon: () => (
-            <Ionicons name="book-outline" size={24} color="black" />
           ),
           headerShown: false,
         }}
@@ -207,40 +190,6 @@ export default function RootLayout() {
         }}
       />
       <Drawer.Screen
-        name="auth/sign-in/index"
-        options={{
-          drawerLabel: 'auth',
-          title: 'auth',
-          drawerIcon: () => (
-            <AntDesign name="linechart" size={24} color="black" />
-          ),
-          headerShown: false,
-          drawerItemStyle: { display: 'none' },
-        }}/>
-         <Drawer.Screen
-        name="auth/sign-up/index"
-        options={{
-          drawerLabel: 'auth',
-          title: 'auth',
-          drawerIcon: () => (
-            <AntDesign name="linechart" size={24} color="black" />
-          ),
-          headerShown: false,
-          drawerItemStyle: { display: 'none' },
-        }}/>
-        <Drawer.Screen
-        name="Welcome"
-        options={{
-          drawerLabel: 'Welcome',
-          title: 'Analytics',
-          drawerIcon: () => (
-            <AntDesign name="linechart" size={24} color="black" />
-          ),
-          headerShown: false,
-          swipeEnabled: false ,
-          drawerItemStyle: { display: 'none' },
-        }}/>
-      <Drawer.Screen
         name="faq"
         options={{
           drawerLabel: 'FAQ',
@@ -251,8 +200,6 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-      
     </Drawer>
-    
   );
 }
