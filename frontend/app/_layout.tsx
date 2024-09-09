@@ -200,6 +200,53 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
+      <Drawer.Screen
+        name="Welcome"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
+        name="auth/sign-in/index"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
+        name="auth/sign-up/index"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
+        name="index"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+        }}
+      />
     </Drawer>
   );
 }
