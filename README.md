@@ -23,7 +23,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 ## Project Links
 
 - **Final SIH Presentation:** [Final SIH Presentation](https://drive.google.com/drive/folders/1qb5ITC6y7Re7kQTG4xF6VKaXPfceNs4C?usp=drive_link)
-- **Video Demonstration:** [Watch Video](UNLISTED YOUTUBE LINK)
+- **Video Demonstration:** [Watch Video](https://youtu.be/nmUQdu0u98c)
 
 ## Get started
 
