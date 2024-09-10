@@ -13,12 +13,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 **Team Members:**
 
-- *Rajat Raj* - 2021UCI8055 - [@interrupt404](https://github.com/interrupt404)
-- *Chandan* - 2021UCI8002 - [@alpha2lucifer](https://github.com/alpha2lucifer)
-- *Utkarsh Anand* - 2021UCI8001 - [@utkarshanand07](https://github.com/utkarshanand07)
-- *Manish Kumar Kohli* - 2021UCI8025 - [@Makkohli](https://github.com/Makkohli)
-- *Arpita Sinha* - 2023UEA7645 - [@arpita-sinhaa](https://github.com/arpita-sinhaa)
 - *Paras Jain* - 2021UCI8027 - [@SeineAle](https://github.com/SeineAle)
+- *Chandan* - 2021UCI8002 - [@alpha2lucifer](https://github.com/alpha2lucifer)
+- *Manish Kumar Kohli* - 2021UCI8025 - [@Makkohli](https://github.com/Makkohli)
+- *Rajat Raj* - 2021UCI8055 - [@interrupt404](https://github.com/interrupt404)
+- *Utkarsh Anand* - 2021UCI8001 - [@utkarshanand07](https://github.com/utkarshanand07)
+- *Arpita Sinha* - 2023UEA7645 - [@arpita-sinhaa](https://github.com/arpita-sinhaa)
 
 ## Project Links
 
