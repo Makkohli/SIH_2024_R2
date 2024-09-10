@@ -3,15 +3,15 @@ import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import BrushZoomGraph from '../components/BrushZoomGraph';
-import VictoryAreaAnimation from '../components/VictoryAreaAnimation';
-import StackedPolarBars from '../components/StackedPolarBar';
-import StackedHistogram from '../components/StackedHistogram';
-import StackedGroupedBars from '../components/StackedGroupedBar';
-import RadarChart from '../components/RadarChart';
-import VoronoiTooltipGraph from '../components/VoronoiTooltipGraph';
-import LineGraph from '../components/LineGraph';
-import BarGraph from '../components/BarGraph';
+import BrushZoomGraph from '../../components/BrushZoomGraph';
+import VictoryAreaAnimation from '../../components/VictoryAreaAnimation';
+import StackedPolarBars from '../../components/StackedPolarBar';
+import StackedHistogram from '../../components/StackedHistogram';
+import StackedGroupedBars from '../../components/StackedGroupedBar';
+import RadarChart from '../../components/RadarChart';
+import VoronoiTooltipGraph from '../../components/VoronoiTooltipGraph';
+import LineGraph from '../../components/LineGraph';
+import BarGraph from '../../components/BarGraph';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Analytics() {

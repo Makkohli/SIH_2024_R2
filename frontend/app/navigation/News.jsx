@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
-import { fetchGlobalHealthNews } from '../components/newsService';
+import { fetchGlobalHealthNews } from '../../components/newsService';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 

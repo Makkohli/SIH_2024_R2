@@ -18,6 +18,8 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { BackHandler } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
+import axios from 'axios';
+import { signupUser } from '../../../http/signUpApi'
 
 const SignupPage = () => {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
@@ -45,17 +47,10 @@ const SignupPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        'https://sih-backend-tgt0.onrender.com/api/v1/user/signup',
-        data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log('Signup successful:', response.data);
+      const result = await signupUser(data); // Use the API call from the http folder
+      console.log('Signup successful:', result);
       Alert.alert('Signup Successful', 'You have successfully signed up.');
+      router.push('/home');
     } catch (error) {
       console.error('Signup error:', error);
       Alert.alert('Signup Error', 'There was an error signing up.');

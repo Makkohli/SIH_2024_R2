@@ -1,12 +1,7 @@
-
-
-
-
-
-
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View, BackHandler } from 'react-native';
 import { router } from 'expo-router'; // Import router from expo-router
+
 
 
 
@@ -54,9 +49,9 @@ export default function WelcomeScreen() {
         {/* Signup Button */}
         <TouchableOpacity
           style={[styles.buttonWrapper, styles.signupButton]}
-          onPress={() => router.push('/auth/sign-up')} // Use router.push for signup or learn more
+          onPress={() => router.push('/LearnMore')} // Use router.push for signup or learn more
         >
-          <Text style={styles.signupButtonText}>Sign Up</Text>
+          <Text style={styles.signupButtonText}>Learn More</Text>
         </TouchableOpacity>
       </View>
     </View>
