@@ -11,19 +11,33 @@ import {
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { BackHandler } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function OtpScreen() {
   const navigation = useNavigation();
+  const router = useRouter(); // Initialize the router
   const [otp, setOtp] = useState("");
   const [resendDisabled, setResendDisabled] = useState(true);
   const [timer, setTimer] = useState(10);
 
-  // Handle back navigation
   const handleGoBack = () => {
-    navigation.goBack();
+    router.push('auth/sign-in'); // Go back to the previous page in the navigation stack
   };
 
-  // Timer for resend OTP
+  // Handle back button press for Android
+  useEffect(() => {
+    const backAction = () => {
+      router.push('auth/sign-in'); // Replace current route with Welcome page
+      return true; // Return true to prevent the default back action
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove(); // Clean up the listener on unmount
+  }, [router]);
+
+  // Countdown for resend OTP
   useEffect(() => {
     if (timer > 0) {
       const countdown = setTimeout(() => setTimer(timer - 1), 1000);
@@ -34,17 +48,15 @@ export default function OtpScreen() {
   }, [timer]);
 
   const handleVerify = () => {
-    // Add verification logic here
     console.log("OTP Verified");
-    navigation.navigate('Home')
+    navigation.navigate('Home');
   };
 
   const handleResendOtp = () => {
     if (!resendDisabled) {
-      // Add resend OTP logic here
       console.log("OTP Resent");
-      setTimer(10); // Restart the timer
       setResendDisabled(true);
+      setTimer(10); // Restart the timer when OTP is resent
     }
   };
 
@@ -157,7 +169,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   verifyButtonWrapper: {
-    backgroundColor:  "#000000",//"#0052CC",
+    backgroundColor: "#000000",
     borderRadius: 10,
     paddingVertical: 10,
     marginTop: 20,

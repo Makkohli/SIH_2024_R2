@@ -11,17 +11,32 @@ import {
 import React, { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { BackHandler } from 'react-native';
+import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 
 export default function ForgotPasswordScreen() {
   const navigation = useNavigation();
+  const router = useRouter(); // Initialize the router
   const [userId, setUserId] = useState("");
   const [otpSent, setOtpSent] = useState(false); // To check if OTP input should be shown
   const [otp, setOtp] = useState("");
   const [showMessage, setShowMessage] = useState(false); // To display success message
 
   const handleGoBack = () => {
-    navigation.goBack();
+    router.push('auth/sign-in'); // Go back to the previous page in the navigation stack
   };
+  
+  useEffect(() => {
+    const backAction = () => {
+      router.push('auth/sign-in'); // Replace current route with Welcome page
+      return true; // Return true to prevent the default back action
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, [router]);
 
   const handleSubmitUserId = () => {
     setOtpSent(true); // Show OTP input field after submitting user ID
