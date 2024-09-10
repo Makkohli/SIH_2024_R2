@@ -1,6 +1,29 @@
 # Welcome to your Expo app 👋
 
+Welcome to Health X, the future of healthcare analytics.
+Brought to you by team neonNexus, our mission is to revolutionize how disease data is managed and analyzed.
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
+## Team Details
+
+**Team Name:** Neon Nexus
+
+**Team Leader:** [@interrupt404](https://github.com/interrupt404)
+
+**Team Members:**
+
+- *Rajat Raj* - 2021UCI8055 - [@interrupt404](https://github.com/interrupt404)
+- *Chandan* - 2021UCI8002 - [@alpha2lucifer](https://github.com/alpha2lucifer)
+- *Utkarsh Anand* - 2021UCI8001 - [@utkarshanand07](https://github.com/utkarshanand07)
+- *Manish Kumar Kohli* - 2021UCI8025 - [@Makkohli](https://github.com/Makkohli)
+- *Arpita Sinha* - 2023UEA7645 - [@arpita-sinhaa](https://github.com/arpita-sinhaa)
+- *Paras Jain* - 2021UCI8027 - [@SeineAle](https://github.com/SeineAle)
+
+## Project Links
+
+- **Final SIH Presentation:** [Final SIH Presentation](https://drive.google.com/drive/folders/1qb5ITC6y7Re7kQTG4xF6VKaXPfceNs4C?usp=drive_link)
+- **Video Demonstration:** [Watch Video](UNLISTED YOUTUBE LINK)
 
 ## Get started
 
