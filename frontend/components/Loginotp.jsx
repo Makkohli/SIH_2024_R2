@@ -18,12 +18,9 @@ export default function OtpScreen() {
   const [resendDisabled, setResendDisabled] = useState(true);
   const [timer, setTimer] = useState(10);
 
-  // Handle back navigation
   const handleGoBack = () => {
     navigation.goBack();
   };
-
-  // Timer for resend OTP
   useEffect(() => {
     if (timer > 0) {
       const countdown = setTimeout(() => setTimer(timer - 1), 1000);
@@ -34,16 +31,13 @@ export default function OtpScreen() {
   }, [timer]);
 
   const handleVerify = () => {
-    // Add verification logic here
     console.log("OTP Verified");
     navigation.navigate('Home')
   };
 
   const handleResendOtp = () => {
     if (!resendDisabled) {
-      // Add resend OTP logic here
       console.log("OTP Resent");
-      setTimer(10); // Restart the timer
       setResendDisabled(true);
     }
   };
