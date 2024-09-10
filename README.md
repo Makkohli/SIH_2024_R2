@@ -5,29 +5,6 @@ Brought to you by Team **Neon Nexus**, our mission is to revolutionize how disea
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Team Details
-
-**Team Name:** Neon Nexus
-
-**Team Leader:** [@interrupt404](https://github.com/interrupt404)
-
-**Team Members:**
-
-- *Paras Jain* - 2021UCI8027 - [@SeineAle](https://github.com/SeineAle)
-- *Chandan* - 2021UCI8002 - [@alpha2lucifer](https://github.com/alpha2lucifer)
-- *Manish Kumar Kohli* - 2021UCI8025 - [@Makkohli](https://github.com/Makkohli)
-- *Rajat Raj* - 2021UCI8055 - [@interrupt404](https://github.com/interrupt404)
-- *Utkarsh Anand* - 2021UCI8001 - [@utkarshanand07](https://github.com/utkarshanand07)
-- *Arpita Sinha* - 2023UEA7645 - [@arpita-sinhaa](https://github.com/arpita-sinhaa)
-
-## Project Links
-
-- **Final SIH Presentation:** [Final SIH Presentation](https://drive.google.com/drive/folders/1qb5ITC6y7Re7kQTG4xF6VKaXPfceNs4C?usp=drive_link)
-- **Video Demonstration:** [Watch Video](https://youtu.be/nmUQdu0u98c)
-- **Download the App**: [Health X App](https://drive.google.com/file/d/1fK4nXfUUNcnBj9x1fl07AClZAuPXvWPJ/view?usp=sharing)
-
-
-
 ## Proposed Solution
 
 **Health X** is a scalable app designed for real-time disease tracking and secure health data management, with AI/ML chatbot support for user engagement. It supports multiple levels of health administration, from national to local.
@@ -65,6 +42,28 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 - **Patients**: Improved access to personal health data.
 - **Government**: Enhanced health monitoring and response capabilities.
 - **Environmental**: Promotes eco-friendly practices, reducing paper usage.
+
+
+## Team Details
+
+**Team Name:** Neon Nexus
+
+**Team Leader:** [@interrupt404](https://github.com/interrupt404)
+
+**Team Members:**
+
+- *Paras Jain* - 2021UCI8027 - [@SeineAle](https://github.com/SeineAle)
+- *Chandan* - 2021UCI8002 - [@alpha2lucifer](https://github.com/alpha2lucifer)
+- *Manish Kumar Kohli* - 2021UCI8025 - [@Makkohli](https://github.com/Makkohli)
+- *Rajat Raj* - 2021UCI8055 - [@interrupt404](https://github.com/interrupt404)
+- *Utkarsh Anand* - 2021UCI8001 - [@utkarshanand07](https://github.com/utkarshanand07)
+- *Arpita Sinha* - 2023UEA7645 - [@arpita-sinhaa](https://github.com/arpita-sinhaa)
+
+## Project Links
+
+- **Final SIH Presentation:** [Final SIH Presentation](https://drive.google.com/drive/folders/1qb5ITC6y7Re7kQTG4xF6VKaXPfceNs4C?usp=drive_link)
+- **Video Demonstration:** [Watch Video](https://youtu.be/nmUQdu0u98c)
+- **Download the App**: [Health X App](https://drive.google.com/file/d/1fK4nXfUUNcnBj9x1fl07AClZAuPXvWPJ/view?usp=sharing)
 
 ## Get Started
 
