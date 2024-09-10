@@ -1,4 +1,3 @@
-// Import necessary libraries
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
@@ -42,7 +41,6 @@ export default function PatientForm() {
 
   // Function to submit the patient form
   const onSubmit = async (data) => {
-    // Format the data to match the required structure
     const newData = {
       newData: {
         uid: data.uid,
@@ -62,10 +60,9 @@ export default function PatientForm() {
         method: 'POST',
         headers: {
           'authorization': `${token}`,
-          'Content-Type': 'application/json' // Ensure this is set correctly
-       
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newData), // Send the properly formatted data
+        body: JSON.stringify(newData),
       });
 
       const responseData = await response.json();
@@ -80,34 +77,32 @@ export default function PatientForm() {
       console.error(error);
     }
 
-    reset(); // Reset the form after submission
+    reset();
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.heading}>Login</Text>
-      {/* User ID */}
       <TextInput
         style={styles.input}
         placeholder="User ID"
         value={userId}
         onChangeText={setUserId}
+        placeholderTextColor="#888"
       />
-      {/* Password */}
       <TextInput
         style={styles.input}
         placeholder="Password"
         value={password}
         secureTextEntry
         onChangeText={setPassword}
+        placeholderTextColor="#888"
       />
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login" onPress={handleLogin} color="black" />
 
       {token && (
         <>
           <Text style={styles.heading}>Patient Information Form</Text>
-
-          {/* UID */}
           <Controller
             control={control}
             name="uid"
@@ -119,12 +114,12 @@ export default function PatientForm() {
                 placeholder="UID"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
           {errors.uid && <Text style={styles.error}>UID is required.</Text>}
 
-          {/* First Name */}
           <Controller
             control={control}
             name="firstName"
@@ -136,12 +131,12 @@ export default function PatientForm() {
                 placeholder="First Name"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
           {errors.firstName && <Text style={styles.error}>First name is required.</Text>}
 
-          {/* Last Name */}
           <Controller
             control={control}
             name="lastName"
@@ -152,11 +147,11 @@ export default function PatientForm() {
                 placeholder="Last Name"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
 
-          {/* Age */}
           <Controller
             control={control}
             name="age"
@@ -169,12 +164,12 @@ export default function PatientForm() {
                 keyboardType="numeric"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
           {errors.age && <Text style={styles.error}>Age is required and must be 0 or more.</Text>}
 
-          {/* Sex */}
           <Controller
             control={control}
             name="sex"
@@ -185,11 +180,11 @@ export default function PatientForm() {
                 placeholder="Sex"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
 
-          {/* Start Date */}
           <Controller
             control={control}
             name="startDate"
@@ -201,12 +196,12 @@ export default function PatientForm() {
                 placeholder="Start Date (YYYY-MM-DD)"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
           {errors.startDate && <Text style={styles.error}>Start date is required.</Text>}
 
-          {/* End Date */}
           <Controller
             control={control}
             name="endDate"
@@ -217,11 +212,11 @@ export default function PatientForm() {
                 placeholder="End Date (YYYY-MM-DD)"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
 
-          {/* Status */}
           <Controller
             control={control}
             name="status"
@@ -233,12 +228,12 @@ export default function PatientForm() {
                 placeholder="Status (e.g., active, cured, dead)"
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
           {errors.status && <Text style={styles.error}>Status is required.</Text>}
 
-          {/* Description */}
           <Controller
             control={control}
             name="description"
@@ -251,11 +246,12 @@ export default function PatientForm() {
                 numberOfLines={4}
                 onChangeText={onChange}
                 value={value}
+                placeholderTextColor="#888"
               />
             )}
           />
 
-          <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+          <Button title="Submit" onPress={handleSubmit(onSubmit)} color="black" />
         </>
       )}
     </ScrollView>
@@ -265,24 +261,29 @@ export default function PatientForm() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#f8f9fa',
     flexGrow: 1,
   },
   heading: {
+    fontFamily: 'montbold', // Your custom font
     fontSize: 24,
-    fontWeight: 'bold',
+    color: 'black',
     textAlign: 'center',
     marginBottom: 20,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
+    borderColor: '#555',
+    backgroundColor: '#f8f9fa',
+    padding: 12,
     borderRadius: 5,
+    color: 'black',
     marginBottom: 15,
+    fontFamily: 'montbold', // Your custom font
   },
   error: {
-    color: 'red',
+    color: '#ff4d4d',
+    fontFamily: 'montbold', // Your custom font
     marginBottom: 10,
   },
 });

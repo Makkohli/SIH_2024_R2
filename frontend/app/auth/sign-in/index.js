@@ -15,7 +15,7 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import { BackHandler } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
-
+import { postLogin } from "../../../http/signInApi";
 export default function LoginScreen() {
   const router = useRouter(); // Initialize the router
   const [secureEntry, setSecureEntry] = useState(true);
@@ -49,29 +49,17 @@ export default function LoginScreen() {
     };
 
     try {
-      const response = await fetch('https://sih-backend-tgt0.onrender.com/api/v1/user/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
+      const data = await postLogin(loginData); // Use the postLogin function
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Login successful");
-        // Navigate to the next screen after successful login
-        router.push('/home');
-      } else {
-        console.error("Login failed", data);
-        Alert.alert("Login Failed", data.message || "Invalid credentials.");
-      }
+      console.log("Login successful");
+      // Navigate to the next screen after successful login
+      router.push('/navigation/home');
     } catch (error) {
-      console.error("Error during login", error);
-      Alert.alert("Error", "Something went wrong. Please try again.");
+      console.error("Login failed", error);
+      Alert.alert("Login Failed", error.message);
     }
   };
+
 
   return (
     <KeyboardAvoidingView 
@@ -132,7 +120,7 @@ export default function LoginScreen() {
 
             {/* Forgot Password */}
             <TouchableOpacity>
-              <Text style={styles.forgotPasswordText} onPress={() => router.push('/auth/forgot-password')}>Forgot Password?</Text>
+              <Text style={styles.forgotPasswordText} onPress={() => router.push('auth/Forgotpassword')}>Forgot Password?</Text>
             </TouchableOpacity>
 
             {/* Login Button */}

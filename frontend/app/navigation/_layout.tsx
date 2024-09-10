@@ -12,7 +12,7 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props}>
       {/* Icon at the top of the drawer */}
       <View style={styles.header}>
-        <Image source={require('./../assets/images/welcomelogo.png')} style={styles.logo} />
+        <Image source={require('./../../assets/images/welcomelogo.png')} style={styles.logo} />
       </View>
 
       {/* Custom Drawer Items */}
@@ -32,6 +32,12 @@ function CustomDrawerContent(props) {
         label="Analytics"
         icon={() => <AntDesign name="linechart" size={24} color="black" />}
         onPress={() => props.navigation.navigate('Analytics')}
+        labelStyle={styles.drawerLabel}
+      />
+      <DrawerItem
+        label="Submit Data"
+        icon={() => <Ionicons name="book-outline" size={24} color="black" />}
+        onPress={() => props.navigation.navigate('Submitdata')}
         labelStyle={styles.drawerLabel}
       />
       <DrawerItem
@@ -70,12 +76,12 @@ function CustomDrawerContent(props) {
         onPress={() => props.navigation.navigate('faq')}
         labelStyle={styles.drawerLabel}
       />
-      <DrawerItem
+      {/* <DrawerItem
         label="DataEntry"
         icon={() => <Ionicons name="bookmarks-outline" size={24} color="black" />}
         onPress={() => props.navigation.navigate('DataEntry')}
         labelStyle={styles.drawerLabel}
-      />
+      /> */}
     </DrawerContentScrollView>
   );
 }
@@ -84,13 +90,14 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     alignItems: 'center',
+    marginTop:10
   },
   logo: {
     width: 160,
     height: 160,
     resizeMode: 'contain',
     marginBottom: -60,
-    marginTop: -60,
+    marginTop: -50,
   },
   drawerLabel: {
     fontFamily: 'montbold', // Ensure 'montbold' is correctly loaded in your project
@@ -105,7 +112,7 @@ export default function RootLayout() {
       <Drawer.Screen
         name="home"
         options={{
-          drawerLabel: 'Home',
+          drawerLabel:" ",
           title: 'Home',
           drawerIcon: () => (
             <AntDesign name="home" size={24} color="black" />
@@ -138,6 +145,18 @@ export default function RootLayout() {
             <AntDesign name="linechart" size={24} color="black" />
           ),
           headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Submitdata"
+        options={{
+          drawerLabel: 'Analytics',
+          title: 'Analytics',
+          drawerIcon: () => (
+            <AntDesign name="linechart" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
         }}
       />
       <Drawer.Screen
@@ -207,7 +226,7 @@ export default function RootLayout() {
           
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Welcome"
         options={{
           drawerLabel: 'FAQ',
@@ -216,11 +235,60 @@ export default function RootLayout() {
             <Ionicons name="bookmarks-outline" size={24} color="black" />
           ),
           headerShown: false,
+          drawerItemStyle: { height:0 },
+          swipeEnabled:false,
+          swipeEdgeWidth:0
+        }}
+      /> */}
+      {/* <Drawer.Screen
+        name="auth/sign-in/index"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
           drawerItemStyle: { display: 'none' },
         }}
-      />
-      <Drawer.Screen
+      /> */}
+      {/* <Drawer.Screen
+        name="auth/sign-up/index"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}
+      /> */}
+      {/* <Drawer.Screen
+        name="auth/Forgotpassword"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+          drawerItemStyle: { display: 'none' },
+        }}
+      /> */}
+      {/* <Drawer.Screen
         name="index"
+        options={{
+          drawerLabel: 'FAQ',
+          title: 'FAQ',
+          drawerIcon: () => (
+            <Ionicons name="bookmarks-outline" size={24} color="black" />
+          ),
+          headerShown: false,
+        }}
+      /> */}
+        <Drawer.Screen
+        name="DataEntry"
         options={{
           drawerLabel: 'FAQ',
           title: 'FAQ',
@@ -231,18 +299,7 @@ export default function RootLayout() {
           drawerItemStyle: { display: 'none' },
         }}
       />
-      <Drawer.Screen
-  name="DataEntry"
-  options={{
-    drawerLabel: 'Data Entry',
-    title: 'Data Entry',
-    drawerIcon: () => (
-      <Ionicons name="bookmarks-outline" size={24} color="black" />
-    ),
-    headerShown: false,
-  }}
-/>
-
     </Drawer>
+    
   );
 }

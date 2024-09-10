@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import { router } from 'expo-router';
+import QuoteCards from '../../../components/Quotescard';
+import SchemesBanner from '../../../components/SchemesBanner';
+
 
 export default function Home() {
   const navigation = useNavigation();
@@ -26,7 +29,7 @@ export default function Home() {
       <View style={styles.header}>
         {/* Logo Image */}
         <View style={styles.logoContainer}>
-          <Image source={require('./../../assets/images/welcomelogoblack.png')} style={styles.logo} />
+          <Image source={require('./../../../assets/images/welcomelogoblack.png')} style={styles.logo} />
         </View>
 
         {/* Header Icons and Title */}
@@ -34,7 +37,7 @@ export default function Home() {
           <TouchableOpacity onPress={toggleMenu}>
             <Ionicons name="menu-outline" size={28} color="white" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Home</Text>
+          {/* <Text style={styles.headerTitle}>Home</Text> */}
           <View style={styles.headerIcons}>
             <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
               <Ionicons name="search-outline" size={28} color="white" style={styles.iconSpacing} />
@@ -75,7 +78,7 @@ export default function Home() {
 
         {/* Banner Section */}
         <View style={styles.bannerContainer}>
-          <Image source={require('./../../assets/images/banner3.png')} style={styles.bannerImage} />
+          <Image source={require('./../../../assets/images/banner3.png')} style={styles.bannerImage} />
           <Text style={styles.bannerText}>Annual Health Index</Text>
         </View>
 
@@ -107,6 +110,17 @@ export default function Home() {
           <Text style={styles.whatsappText}>Join our WhatsApp</Text>
         </View>
 
+        {/* Schemes Banner Section */}
+        {/* <Text style={styles.sectionHeading}>Government Schemes</Text> Title for SchemesBanner */}
+        <Text style={styles.sectionHeading}>Government Schemes</Text>
+        <SchemesBanner />
+
+        {/* Quotes Banner Section */}
+        {/* <Text style={styles.sectionHeading}>Thought of the day</Text> Title for QuotesBanner */}
+        <Text style={styles.sectionHeading}>Thoughts of the day</Text>
+        <QuoteCards />
+
+
       </ScrollView>
     </View>
   );
@@ -116,6 +130,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
+  },
+  sectionHeading: {
+    fontFamily: 'montbold',
+    fontSize: 22,
+    color: '#000000',
+    marginBottom: 20,
   },
   header: {
     backgroundColor: '#000',
@@ -127,7 +147,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     marginBottom: -40, // Creates space between the logo and the header content
     alignItems: 'left',
-    marginTop: -20,
+    marginTop: -10,
   },
   logo: {
     width: 140, // Adjust logo width
