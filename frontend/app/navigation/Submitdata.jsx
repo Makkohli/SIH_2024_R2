@@ -1,43 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function PatientForm() {
   const { control, handleSubmit, reset, formState: { errors } } = useForm();
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
-
-  // Login function to retrieve token
-  const handleLogin = async () => {
-    const loginData = {
-      userId: userId,
-      password: password,
-    };
-
-    try {
-      const response = await fetch('https://sih-backend-tgt0.onrender.com/api/v1/user/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        const userToken = data.token;
-        setToken(userToken);
-        Alert.alert('Login Successful', 'Token received.');
-      } else {
-        Alert.alert('Login Failed', data.message || 'An error occurred.');
-      }
-    } catch (error) {
-      Alert.alert('Error', 'Failed to login.');
-      console.error(error);
-    }
-  };
 
   // Function to submit the patient form
   const onSubmit = async (data) => {
@@ -56,6 +23,7 @@ export default function PatientForm() {
     };
 
     try {
+      const token = await AsyncStorage.getItem('token');
       const response = await fetch('https://sih-backend-tgt0.onrender.com/api/v1/data/', {
         method: 'POST',
         headers: {
@@ -82,178 +50,157 @@ export default function PatientForm() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="User ID"
-        value={userId}
-        onChangeText={setUserId}
-        placeholderTextColor="#888"
+      <Text style={styles.heading}>Patient Information Form</Text>
+
+      <Controller
+        control={control}
+        name="uid"
+        defaultValue=""
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="UID"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
+          />
+        )}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        secureTextEntry
-        onChangeText={setPassword}
-        placeholderTextColor="#888"
+      {errors.uid && <Text style={styles.error}>UID is required.</Text>}
+
+      <Controller
+        control={control}
+        name="firstName"
+        defaultValue=""
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="First Name"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
+          />
+        )}
       />
-      <Button title="Login" onPress={handleLogin} color="black" />
+      {errors.firstName && <Text style={styles.error}>First name is required.</Text>}
 
-      {token && (
-        <>
-          <Text style={styles.heading}>Patient Information Form</Text>
-          <Controller
-            control={control}
-            name="uid"
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="UID"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="lastName"
+        defaultValue=""
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Last Name"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
-          {errors.uid && <Text style={styles.error}>UID is required.</Text>}
+        )}
+      />
 
-          <Controller
-            control={control}
-            name="firstName"
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="First Name"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="age"
+        defaultValue=""
+        rules={{ required: true, min: 0 }}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Age"
+            keyboardType="numeric"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
-          {errors.firstName && <Text style={styles.error}>First name is required.</Text>}
+        )}
+      />
+      {errors.age && <Text style={styles.error}>Age is required and must be 0 or more.</Text>}
 
-          <Controller
-            control={control}
-            name="lastName"
-            defaultValue=""
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="Last Name"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="sex"
+        defaultValue=""
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Sex"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
+        )}
+      />
 
-          <Controller
-            control={control}
-            name="age"
-            defaultValue=""
-            rules={{ required: true, min: 0 }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="Age"
-                keyboardType="numeric"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="startDate"
+        defaultValue=""
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Start Date (YYYY-MM-DD)"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
-          {errors.age && <Text style={styles.error}>Age is required and must be 0 or more.</Text>}
+        )}
+      />
+      {errors.startDate && <Text style={styles.error}>Start date is required.</Text>}
 
-          <Controller
-            control={control}
-            name="sex"
-            defaultValue=""
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="Sex"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="endDate"
+        defaultValue=""
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="End Date (YYYY-MM-DD)"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
+        )}
+      />
 
-          <Controller
-            control={control}
-            name="startDate"
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="Start Date (YYYY-MM-DD)"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="status"
+        defaultValue=""
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Status (e.g., active, cured, dead)"
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
-          {errors.startDate && <Text style={styles.error}>Start date is required.</Text>}
+        )}
+      />
+      {errors.status && <Text style={styles.error}>Status is required.</Text>}
 
-          <Controller
-            control={control}
-            name="endDate"
-            defaultValue=""
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="End Date (YYYY-MM-DD)"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
+      <Controller
+        control={control}
+        name="description"
+        defaultValue=""
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={styles.input}
+            placeholder="Description"
+            multiline
+            numberOfLines={4}
+            onChangeText={onChange}
+            value={value}
+            placeholderTextColor="#888"
           />
+        )}
+      />
 
-          <Controller
-            control={control}
-            name="status"
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="Status (e.g., active, cured, dead)"
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
-          />
-          {errors.status && <Text style={styles.error}>Status is required.</Text>}
-
-          <Controller
-            control={control}
-            name="description"
-            defaultValue=""
-            render={({ field: { onChange, value } }) => (
-              <TextInput
-                style={styles.input}
-                placeholder="Description"
-                multiline
-                numberOfLines={4}
-                onChangeText={onChange}
-                value={value}
-                placeholderTextColor="#888"
-              />
-            )}
-          />
-
-          <Button title="Submit" onPress={handleSubmit(onSubmit)} color="black" />
-        </>
-      )}
+      <Button title="Submit" onPress={handleSubmit(onSubmit)} color="black" />
     </ScrollView>
   );
 }

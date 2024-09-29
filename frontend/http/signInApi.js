@@ -1,4 +1,5 @@
 // http/api.js
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const postLogin = async (loginData) => {
     try {
@@ -15,7 +16,9 @@ export const postLogin = async (loginData) => {
       if (!response.ok) {
         throw new Error(data.message || 'Login failed');
       }
-  
+      await AsyncStorage.setItem('token', data.token);
+      await AsyncStorage.setItem('userDetails', JSON.stringify(data.userDetails));
+
       return data; // Return the response data on success
     } catch (error) {
       throw new Error(error.message || 'An error occurred during login');
