@@ -1,203 +1,66 @@
+// Analytics.js
 import React, { useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
-import BrushZoomGraph from '../../components/BrushZoomGraph';
-import VictoryAreaAnimation from '../../components/VictoryAreaAnimation';
-import StackedPolarBars from '../../components/StackedPolarBar';
-import StackedHistogram from '../../components/StackedHistogram';
-import StackedGroupedBars from '../../components/StackedGroupedBar';
-import RadarChart from '../../components/RadarChart';
-import VoronoiTooltipGraph from '../../components/VoronoiTooltipGraph';
-import LineGraph from '../../components/LineGraph';
-import BarGraph from '../../components/BarGraph';
+import { ScrollView, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import HealthDataInsights from '../../components/HealthDataInsights';
+import SchemeInsights from '../../components/SchemeInsights';
+import DropdownMenu from '../../components/DropdownMenu';
 
-export default function Analytics() {
-  const [expanded, setExpanded] = useState({});
-  const [searchQuery, setSearchQuery] = useState('');
-  const router = useRouter(); // Initialize the router
+const AnalyticsPage = () => {
   const navigation = useNavigation();
-
-  const toggleSection = (section) => {
-    setExpanded((prev) => ({ ...prev, [section]: !prev[section] }));
-  };
-
-  const handleGoBack = () => {
-    router.push('Welcome'); // Go back to the Welcome page
-  };
+  const [selectedInsight, setSelectedInsight] = useState('Health Data');
+  const [selectedScheme, setSelectedScheme] = useState('Old Age Pension Scheme');
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Back Button */}
       <TouchableOpacity style={styles.backButtonWrapper} onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back-outline" color="#333" size={25} />
-        </TouchableOpacity>
+        <Icon name="arrow-back-outline" size={24} color="#333" />
+      </TouchableOpacity>
 
-      <Text style={styles.header}>Health Analytics Dashboard</Text>
+      {/* Header */}
+      <Text style={styles.header}>Analytics & Insights</Text>
 
-      {/* Search Bar */}
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search analytics..."
-          placeholderTextColor="#666"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
-        <Icon name="search" size={24} color="#666" />
-      </View>
+      {/* Dropdown Menu Component */}
+      <DropdownMenu
+        selectedInsight={selectedInsight}
+        setSelectedInsight={setSelectedInsight}
+        selectedScheme={selectedScheme}
+        setSelectedScheme={setSelectedScheme}
+      />
 
-      {/* Graph Sections */}
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('epidemiologicalData')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Epidemiological Data</Text>
-            <Icon name={expanded.epidemiologicalData ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.epidemiologicalData && <BrushZoomGraph />}
-      </View>
+      {/* Render Health Data Insights */}
+      {selectedInsight === 'Health Data' && <HealthDataInsights />}
 
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('areaAnimation')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Victory Area Animation</Text>
-            <Icon name={expanded.areaAnimation ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.areaAnimation && <VictoryAreaAnimation />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('polarBars')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Stacked Polar Bars</Text>
-            <Icon name={expanded.polarBars ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.polarBars && <StackedPolarBars />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('stackedHistogram')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Stacked Histogram</Text>
-            <Icon name={expanded.stackedHistogram ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.stackedHistogram && <StackedHistogram />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('stackedGroupedBars')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Stacked Grouped Bars</Text>
-            <Icon name={expanded.stackedGroupedBars ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.stackedGroupedBars && <StackedGroupedBars />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('radarChart')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Radar Chart</Text>
-            <Icon name={expanded.radarChart ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.radarChart && <RadarChart />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('voronoiTooltip')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Voronoi Tooltip Graph</Text>
-            <Icon name={expanded.voronoiTooltip ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.voronoiTooltip && <VoronoiTooltipGraph />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('lineGraph')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Line Graph</Text>
-            <Icon name={expanded.lineGraph ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.lineGraph && <LineGraph />}
-      </View>
-
-      <View style={styles.section}>
-        <TouchableOpacity onPress={() => toggleSection('barGraph')}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Bar Graph</Text>
-            <Icon name={expanded.barGraph ? 'expand-less' : 'expand-more'} size={24} color='#333' />
-          </View>
-        </TouchableOpacity>
-        {expanded.barGraph && <BarGraph />}
-      </View>
+      {/* Render Healthcare Schemes Insights */}
+      {selectedInsight === 'Healthcare Schemes' && <SchemeInsights selectedScheme={selectedScheme} />}
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+    padding: 15,
+    backgroundColor: '#f5f5f5',
+    alignItems: 'center',
   },
   backButtonWrapper: {
-    height: 40,
-    width: 40,
+    position: 'absolute',
+    top: 10,
+    left: 15,
+    zIndex: 10,
     backgroundColor: "#E8E8E8",
+    padding: 5,
     borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-    marginBottom: 20,
   },
   header: {
-    fontSize: 32,
-    color: '#333',
-    fontFamily: 'montbold',
-    textAlign: 'left',
-    marginBottom: 30,
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#E8E8E8',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    alignItems: 'center',
+    fontSize: 24,
+    fontFamily: 'montbold', // Updated to use montbold
     marginBottom: 20,
-  },
-  searchInput: {
-    flex: 1,
-    fontSize: 16,
-    fontFamily: 'montregular',
-    color: '#333',
-    marginRight: 10,
-  },
-  section: {
-    marginBottom: 20,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    backgroundColor: '#E8E8E8',
-    borderRadius: 10,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontFamily: 'montbold',
-    color: '#333',
+    textAlign: 'center',
   },
 });
 
+export default AnalyticsPage;
