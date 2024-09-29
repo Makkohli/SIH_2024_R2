@@ -145,13 +145,13 @@ const styles = StyleSheet.create({
     alignItems: 'left',
   },
   logoContainer: {
-    marginBottom: -40, // Creates space between the logo and the header content
+    marginBottom: -50, // Creates space between the logo and the header content
     alignItems: 'left',
-    marginTop: -10,
+    marginTop: -40,
   },
   logo: {
-    width: 140, // Adjust logo width
-    height: 120, // Adjust logo height
+    width: 170, // Adjust logo width
+    height: 140, // Adjust logo height
     resizeMode: 'contain',
   },
   headerContent: {
