@@ -61,9 +61,9 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Project Links
 
-- **Final SIH Presentation:** [Final SIH Presentation](https://drive.google.com/drive/folders/1qb5ITC6y7Re7kQTG4xF6VKaXPfceNs4C?usp=drive_link)
-- **Video Demonstration:** [Watch Video](https://youtu.be/nmUQdu0u98c)
-- **Download the App**: [Health X App](https://drive.google.com/file/d/1fK4nXfUUNcnBj9x1fl07AClZAuPXvWPJ/view?usp=sharing)
+- **Final SIH Presentation:** [Final SIH Presentation](https://drive.google.com/file/d/1N0Nbgi8v7gmU7YkH4CYqS1pAZMGloXfm/view?usp=drive_link)
+- **Video Demonstration:** [Watch Video](https://youtu.be/yRODOxOS_uM)
+- **Download the App**: [Health X App](https://drive.google.com/file/d/1aPKA87kENM6DZvZ2bAvT4JGZxlnnC2oN/view?usp=sharing)
 
 ## Get Started
 
